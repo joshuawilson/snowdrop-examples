@@ -8,36 +8,37 @@
     <ui:define name="content">
         <table>
             <tr>
-
                 <td style="width:400px">
                     <rich:panel>
-                        <h:outputLabel value="From"/>
-                        <h:panelGroup>
-                            <rich:calendar id="from"
-                                           value="#{reservation.from}"
-                                           datePattern="d/M/yy HH:mm"
-                                           showApplyButton="true"
-                                           locale="#{reservationCreate.locale}">
-                                <a4j:ajax event="change"
-                                             action="#{equipmentFilterCreate.reset}" render="equipmentsTable, reservationData"/>
-                            </rich:calendar>
-                            <h:message for="from" style="color:RED" showDetail="true" showSummary="true"/>
-                        </h:panelGroup>
-
-                        <h:outputLabel value="To"/>
-                        <h:panelGroup>
-                            <rich:calendar id="to"
-                                           value="#{reservation.to}"
-                                           datePattern="d/M/yy HH:mm"
-                                           showApplyButton="true"
-                                           locale="#{reservationCreate.locale}">
-                                <a4j:ajax event="change"
-                                             action="#{equipmentFilterCreate.reset}" render="equipmentsTable, reservationData"/>
-                            </rich:calendar>
-                            <h:message for="to" style="color:RED" showDetail="true" showSummary="true"/>
-                        </h:panelGroup>
-
-
+	                    <h:form id="dateSelection">
+	                        <h:outputLabel value="From"/>
+	                        <h:panelGroup>
+	                            <rich:calendar id="from"
+	                                           value="#{reservation.from}"
+	                                           datePattern="d/M/yy HH:mm"
+	                                           showApplyButton="true"
+	                                           locale="#{reservationCreate.locale}">
+	                                <a4j:ajax event="change"
+	                                          action="#{equipmentFilterCreate.reset}" 
+	                                          render="equipmentsTable, reservationData"/>
+	                            </rich:calendar>
+	                            <h:message for="from" style="color:RED" showDetail="true" showSummary="true"/>
+	                        </h:panelGroup>
+	
+	                        <h:outputLabel value="To"/>
+	                        <h:panelGroup>
+	                            <rich:calendar id="to"
+	                                           value="#{reservation.to}"
+	                                           datePattern="d/M/yy HH:mm"
+	                                           showApplyButton="true"
+	                                           locale="#{reservationCreate.locale}">
+	                                <a4j:ajax event="change"
+	                                          action="#{equipmentFilterCreate.reset}" 
+	                                          render="equipmentsTable, reservationData"/>
+	                            </rich:calendar>
+	                            <h:message for="to" style="color:RED" showDetail="true" showSummary="true"/>
+	                        </h:panelGroup>
+	                    </h:form>
                     </rich:panel>
 
                     <rich:panel>
@@ -125,7 +126,7 @@
                                 <h:outputLabel value="From:"/>
                                 <h:panelGroup>
                                     <h:outputText value="#{reservation.from}" rendered="#{!reservationSearch.editing}"/>
-                                    <rich:calendar id="from"
+                                    <rich:calendar id="fromx"
                                                    value="#{reservation.from}"
                                                    datePattern="d/M/yy HH:mm"
                                                    showApplyButton="true"
@@ -136,7 +137,7 @@
                                 <h:outputLabel value="To:"/>
                                 <h:panelGroup>
                                     <h:outputText value="#{reservation.to}" rendered="#{!reservationSearch.editing}"/>
-                                    <rich:calendar id="to"
+                                    <rich:calendar id="tox"
                                                    value="#{reservation.to}"
                                                    datePattern="d/M/yy HH:mm"
                                                    showApplyButton="true"
