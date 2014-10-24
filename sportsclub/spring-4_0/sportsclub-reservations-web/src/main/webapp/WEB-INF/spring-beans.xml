@@ -9,6 +9,8 @@
 
     <import resource="classpath*:reservations-service.xml"/>
 
+    <import resource="classpath*:infrastructure.xml"/>
+
     <!-- Session scoped beans -->
     <bean id="reservationCreate" class="org.jboss.snowdrop.samples.sportsclub.jsf.beans.ReservationCreate" scope="session" init-method="init">
         <property name="reservationService" ref="reservationService"/>

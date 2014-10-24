@@ -15,82 +15,69 @@ import org.jboss.snowdrop.samples.sportsclub.service.AccountService;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class AccountFilter extends AbstractExtendedDataModelHelper<Account>
-{
-   private AccountService accountService;
+public class AccountFilter extends AbstractExtendedDataModelHelper<Account> {
+    private AccountService accountService;
 
-   private String subscriberNameFragment;
-   private Map<Long, Account> accountMap = new HashMap<Long, Account>();
+    private String subscriberNameFragment;
+    private Map<Long, Account> accountMap = new HashMap<Long, Account>();
 
-   public AccountFilter()
-   {
-      super();
-   }
+    public AccountFilter() {
+        super();
+    }
 
-   public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument)
-   {
-      int firstResult = ((SequenceRange) range).getFirstRow();
-      int maxResults = ((SequenceRange) range).getRows();
-      List<Account> accounts = accountService.findAccounts(firstResult, maxResults, subscriberNameFragment);
-      accountMap = new HashMap<Long, Account>();
-      for (Account a : accounts)
-      {
-         Long id = a.getId();
-         accountMap.put(id, a);
-         dataVisitor.process(facesContext, id, argument);
-      }
-   }
+    public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument) {
+        int firstResult = ((SequenceRange) range).getFirstRow();
+        int maxResults = ((SequenceRange) range).getRows();
+        List<Account> accounts = accountService.findAccounts(firstResult, maxResults, subscriberNameFragment);
+        accountMap = new HashMap<Long, Account>();
+        for (Account a : accounts) {
+            Long id = a.getId();
+            accountMap.put(id, a);
+            dataVisitor.process(facesContext, id, argument);
+        }
+    }
 
-   public Map<Long, Account> getDomainObjectMap()
-   {
-      return accountMap;
-   }
+    public Map<Long, Account> getDomainObjectMap() {
+        return accountMap;
+    }
 
-   private Long getSelectedKey()
-   {
-      if (getSelection() == null || getSelection().size() == 0)
-         return null;
-      else
-         return ((Long) getSelection().iterator().next());
-   }
+    private Long getSelectedKey() {
+        if (getSelection() == null || getSelection().size() == 0)
+            return null;
+        else
+            return ((Long) getSelection().iterator().next());
+    }
 
-   public Account getSelectedAccount()
-   {
-      if (getSelection() != null && getSelection().size() > 0)
-         return accountMap.get(getSelectedKey());
-      else
-         return null;
-   }
+    public Account getSelectedAccount() {
+        if (getSelection() != null && getSelection().size() > 0)
+            return accountMap.get(getSelectedKey());
+        else
+            return null;
+    }
 
-   public Long getCurrentRowCount()
-   {
-      return accountService.countAccounts(subscriberNameFragment);
-   }
+    public Long getCurrentRowCount() {
+        return accountService.countAccounts(subscriberNameFragment);
+    }
 
-   public void searchAccounts()
-   {
-      resetCurrentRowCount();
-      getRowCount();
-      setCurrentPage(1);
-   }
+    public void searchAccounts() {
+        resetCurrentRowCount();
+        getRowCount();
+        setCurrentPage(1);
+    }
 
-   public String getSubscriberNameFragment()
-   {
-      return subscriberNameFragment;
-   }
+    public String getSubscriberNameFragment() {
+        return subscriberNameFragment;
+    }
 
-   public void setSubscriberNameFragment(String subscriberNameFragment)
-   {
-      this.subscriberNameFragment = subscriberNameFragment;
-   }
+    public void setSubscriberNameFragment(String subscriberNameFragment) {
+        this.subscriberNameFragment = subscriberNameFragment;
+    }
 
-   public AccountService getAccountService()
-   {
-      return accountService;
-   }
+    public AccountService getAccountService() {
+        return accountService;
+    }
 
-   public void setAccountService(AccountService accountService)
-   {
-      this.accountService = accountService;
-   }
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
 }

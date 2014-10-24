@@ -6,50 +6,43 @@ import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Embeddable
-public class Name implements Serializable
-{
+public class Name implements Serializable {
 
-	private static final long serialVersionUID = -2471594116346509511L;
+    private static final long serialVersionUID = -2471594116346509511L;
 
-   @Basic
-   private String firstName;
+    @Basic
+    private String firstName;
 
-   @Basic
-   private String middleName;
+    @Basic
+    private String middleName;
 
-   @Basic
-   private String lastName;
+    @Basic
+    private String lastName;
 
-   public String getFirstName()
-   {
-      return firstName;
-   }
+    public String getFirstName() {
+        return firstName;
+    }
 
-   public void setFirstName(String firstName)
-   {
-      this.firstName = firstName;
-   }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-   public String getLastName()
-   {
-      return lastName;
-   }
+    public String getLastName() {
+        return lastName;
+    }
 
-   public void setLastName(String lastName)
-   {
-      this.lastName = lastName;
-   }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-   public String getMiddleName()
-   {
-      return middleName;
-   }
+    public String getMiddleName() {
+        return middleName;
+    }
 
-   public void setMiddleName(String middleName)
-   {
-      this.middleName = middleName;
-   }
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
 }

@@ -1,32 +1,28 @@
 package org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public class Range
-{
-   private int minIndex;
+public class Range {
 
-   private int maxIndex;
+    private int minIndex;
 
-   public Range(int minIndex, int length)
-   {
-      this.maxIndex = minIndex + length;
-      this.minIndex = minIndex;
-   }
+    private int maxIndex;
 
-   public int getMaxIndex()
-   {
-      return maxIndex;
-   }
+    public Range(int minIndex, int length) {
+        this.maxIndex = minIndex + length;
+        this.minIndex = minIndex;
+    }
 
-   public int getMinIndex()
-   {
-      return minIndex;
-   }
+    public int getMaxIndex() {
+        return maxIndex;
+    }
 
-   public int length()
-   {
-      return maxIndex - minIndex;
-   }
+    public int getMinIndex() {
+        return minIndex;
+    }
+
+    public int length() {
+        return maxIndex - minIndex;
+    }
 }

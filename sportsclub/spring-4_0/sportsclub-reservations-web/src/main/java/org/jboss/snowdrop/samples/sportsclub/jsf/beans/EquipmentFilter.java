@@ -14,62 +14,52 @@ import java.util.List;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class EquipmentFilter extends AbstractExtendedDataModelHelper<Equipment>
-{
-   private EquipmentService equipmentService;
-   private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
+public class EquipmentFilter extends AbstractExtendedDataModelHelper<Equipment> {
+    private EquipmentService equipmentService;
+    private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
 
-   public EquipmentFilter()
-   {
-      super();
-   }
+    public EquipmentFilter() {
+        super();
+    }
 
-   public Map<Long, Equipment> getDomainObjectMap()
-   {
-      return equipmentMap;
-   }
+    public Map<Long, Equipment> getDomainObjectMap() {
+        return equipmentMap;
+    }
 
-   public Long getCurrentRowCount()
-   {
-      return equipmentService.countAllEquipments();
-   }
+    public Long getCurrentRowCount() {
+        return equipmentService.countAllEquipments();
+    }
 
-   public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument)
-   {
-      int firstResult = ((SequenceRange) range).getFirstRow();
-      int maxResults = ((SequenceRange) range).getRows();
-      List<Equipment> equipments = (List<Equipment>) equipmentService.getAllEquipments(firstResult, maxResults);
-      for (Equipment e : equipments)
-      {
-         Long id = e.getId();
-         equipmentMap.put(id, e);
-         dataVisitor.process(facesContext, id, argument);
-      }
-   }
+    public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument) {
+        int firstResult = ((SequenceRange) range).getFirstRow();
+        int maxResults = ((SequenceRange) range).getRows();
+        List<Equipment> equipments = (List<Equipment>) equipmentService.getAllEquipments(firstResult, maxResults);
+        for (Equipment e : equipments) {
+            Long id = e.getId();
+            equipmentMap.put(id, e);
+            dataVisitor.process(facesContext, id, argument);
+        }
+    }
 
-   private Long getSelectedKey()
-   {
-      if (getSelection() == null || getSelection().size() == 0)
-         return null;
-      else
-         return ((Long) getSelection().iterator().next());
-   }
+    private Long getSelectedKey() {
+        if (getSelection() == null || getSelection().size() == 0)
+            return null;
+        else
+            return ((Long) getSelection().iterator().next());
+    }
 
-   public Equipment getSelectedEquipment()
-   {
-      if (getSelection() != null && getSelection().size() > 0)
-         return equipmentMap.get(getSelectedKey());
-      else
-         return null;
-   }
+    public Equipment getSelectedEquipment() {
+        if (getSelection() != null && getSelection().size() > 0)
+            return equipmentMap.get(getSelectedKey());
+        else
+            return null;
+    }
 
-   public EquipmentService getEquipmentService()
-   {
-      return equipmentService;
-   }
+    public EquipmentService getEquipmentService() {
+        return equipmentService;
+    }
 
-   public void setEquipmentService(EquipmentService equipmentService)
-   {
-      this.equipmentService = equipmentService;
-   }
+    public void setEquipmentService(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
+    }
 }

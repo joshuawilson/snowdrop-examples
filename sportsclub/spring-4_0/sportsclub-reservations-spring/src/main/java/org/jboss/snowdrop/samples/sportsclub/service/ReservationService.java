@@ -9,17 +9,16 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Reservation;
 /**
  *
  */
-public interface ReservationService
-{
-   List<Reservation> getReservations(Date fromDate, Date toDate, Integer nim, Integer max, List<EquipmentType> types);
+public interface ReservationService {
+    List<Reservation> getReservations(Date fromDate, Date toDate, Integer nim, Integer max, List<EquipmentType> types);
 
-   Long countReservationsForRange(Date fromDate, Date toDate, List<EquipmentType> types);
+    Long countReservationsForRange(Date fromDate, Date toDate, List<EquipmentType> types);
 
-   Reservation create(Reservation reservation);
+    Reservation create(Reservation reservation);
 
-   public void delete(Reservation reservation);
+    public void delete(Reservation reservation);
 
-   public Reservation updateReservation(Reservation reservation);
+    public Reservation updateReservation(Reservation reservation);
 
-   Reservation loadReservation(Long reservationId);
+    Reservation loadReservation(Long reservationId);
 }

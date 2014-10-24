@@ -12,10 +12,6 @@
 
    <context:component-scan base-package="org.jboss.snowdrop.samples.sportsclub.payment"/>
 
-<!--    <import resource="classpath*:dao-context.xml"/>
-
-   <import resource="classpath*:infrastructure.xml"/> -->
-
    <tx:annotation-driven/>
 
    <aop:config>

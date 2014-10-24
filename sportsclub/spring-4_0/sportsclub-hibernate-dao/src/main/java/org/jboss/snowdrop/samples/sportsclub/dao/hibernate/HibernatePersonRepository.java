@@ -2,16 +2,16 @@ package org.jboss.snowdrop.samples.sportsclub.dao.hibernate;
 
 import org.jboss.snowdrop.samples.sportsclub.domain.entity.Person;
 import org.jboss.snowdrop.samples.sportsclub.domain.repository.PersonRepository;
+import org.springframework.stereotype.Component;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public class HibernatePersonRepository extends HibernateRepository<Person, Long> implements PersonRepository
-{
+@Component
+public class HibernatePersonRepository extends HibernateRepository<Person, Long> implements PersonRepository {
 
-   public HibernatePersonRepository()
-   {
-      super(Person.class);
-   }
+    public HibernatePersonRepository() {
+        super(Person.class);
+    }
 
 }

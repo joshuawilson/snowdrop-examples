@@ -13,12 +13,12 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <jee:jndi-lookup id="stayFitDS" jndi-name="${datasource.jndi.name}"/>
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:context.properties"/>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean>
-
-    <jee:jndi-lookup jndi-name="${datasource.jndi.name}" id="stayFitDS"/>
 
     <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
         <property name="transactionManagerName" value="java:jboss/TransactionManager"/>

@@ -14,55 +14,46 @@ import java.util.List;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 @Transactional(readOnly = true)
-public class AccountServiceImpl implements AccountService
-{
-   private AccountRepository accountRepository;
+public class AccountServiceImpl implements AccountService {
+    private AccountRepository accountRepository;
 
-   public Account getAccountById(long id)
-   {
-      return accountRepository.findById(id);
-   }
+    public Account getAccountById(long id) {
+        return accountRepository.findById(id);
+    }
 
-   public Collection<Account> getAllAccounts()
-   {
-      return accountRepository.findAll();
-   }
+    public Collection<Account> getAllAccounts() {
+        return accountRepository.findAll();
+    }
 
-   public List<Account> findAccounts(int min, int max, String nameFragment)
-   {
-      return accountRepository.findByCriteria(getCriteria(min, max, nameFragment));
-   }
+    public List<Account> findAccounts(int min, int max, String nameFragment) {
+        return accountRepository.findByCriteria(getCriteria(min, max, nameFragment));
+    }
 
-   public Long countAccounts(int min, int max, String nameFragment)
-   {
-      return accountRepository.countByCriteria(getCriteria(min, max, nameFragment));
-   }
+    public Long countAccounts(int min, int max, String nameFragment) {
+        return accountRepository.countByCriteria(getCriteria(min, max, nameFragment));
+    }
 
-   private AccountSearchCriteria getCriteria(Integer min, Integer max, String nameFragment)
-   {
-      AccountSearchCriteria criteria = new AccountSearchCriteria();
-      if (min != null && max != null) criteria.setRange(new Range(min, max));
-      if (nameFragment != null && nameFragment.trim().length() > 0)
-      {
-         criteria.setPersonSearchCriteria(new PersonSearchCriteria());
-         criteria.getPersonSearchCriteria().setName(nameFragment);
-      }
-      return criteria;
-   }
+    private AccountSearchCriteria getCriteria(Integer min, Integer max, String nameFragment) {
+        AccountSearchCriteria criteria = new AccountSearchCriteria();
+        if (min != null && max != null)
+            criteria.setRange(new Range(min, max));
+        if (nameFragment != null && nameFragment.trim().length() > 0) {
+            criteria.setPersonSearchCriteria(new PersonSearchCriteria());
+            criteria.getPersonSearchCriteria().setName(nameFragment);
+        }
+        return criteria;
+    }
 
-   public Long countAccounts(String nameFragment)
-   {
-      return accountRepository.countByCriteria(getCriteria(null, null, nameFragment));
-   }
+    public Long countAccounts(String nameFragment) {
+        return accountRepository.countByCriteria(getCriteria(null, null, nameFragment));
+    }
 
-   public AccountRepository getAccountRepository()
-   {
-      return accountRepository;
-   }
+    public AccountRepository getAccountRepository() {
+        return accountRepository;
+    }
 
-   public void setAccountRepository(AccountRepository accountRepository)
-   {
-      this.accountRepository = accountRepository;
-   }
-   
+    public void setAccountRepository(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
 }

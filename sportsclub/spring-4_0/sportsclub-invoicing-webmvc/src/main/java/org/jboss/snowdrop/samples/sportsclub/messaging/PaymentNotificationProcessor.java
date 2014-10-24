@@ -12,19 +12,18 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.PaymentNotification;
  * @author Marius Bogoevici
  */
 @Component
-public class PaymentNotificationProcessor
-{
-   private static final Log LOG = LogFactory.getLog(PaymentNotificationProcessor.class);
+public class PaymentNotificationProcessor {
 
-   @Autowired
-   private PaymentProcessor paymentProcessor;
+    private static final Log LOG = LogFactory.getLog(PaymentNotificationProcessor.class);
 
-   public void processPaymentNotification(PaymentNotification paymentNotification)
-   {
-      LOG.info(paymentNotification + " received");
-      paymentProcessor.processPayment(paymentNotification.getAccountNumber(), paymentNotification.getAmount());
-      LOG.info(paymentNotification + " processed");
+    @Autowired
+    private PaymentProcessor paymentProcessor;
 
-   }
+    public void processPaymentNotification(PaymentNotification paymentNotification) {
+        LOG.info(paymentNotification + " received");
+        paymentProcessor.processPayment(paymentNotification.getAccountNumber(), paymentNotification.getAmount());
+        LOG.info(paymentNotification + " processed");
+
+    }
 
 }

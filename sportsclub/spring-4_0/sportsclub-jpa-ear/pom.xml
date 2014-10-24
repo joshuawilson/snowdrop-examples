@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>sportsclub-parent</artifactId>
         <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
         <version>3.1.2-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
+
     <artifactId>sportsclub-jpa-ear</artifactId>
     <packaging>ear</packaging>
+
     <name>Sports Club JPA EAR builder</name>
 
+    <properties>
+        <!-- Explicitly declaring the source encoding eliminates the following
+            message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+            resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- JBoss dependency versions -->
+        <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+
+    </properties>
+
     <dependencies>
+
+        <!-- Local -->
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
-            <artifactId>sportsclub-subscriptions-ejb</artifactId>
-            <type>ejb</type>
-            <version>${project.version}</version>
+            <artifactId>sportsclub-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
@@ -26,26 +41,18 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
-            <artifactId>sportsclub-domain</artifactId>
-            <type>jar</type>
+            <artifactId>sportsclub-invoicing-webmvc</artifactId>
+            <type>war</type>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-jpa-dao</artifactId>
-            <type>jar</type>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-reservations-spring</artifactId>
-            <type>jar</type>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
-            <artifactId>sportsclub-subscriptions-web</artifactId>
-            <type>war</type>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -62,10 +69,18 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
-            <artifactId>sportsclub-invoicing-webmvc</artifactId>
+            <artifactId>sportsclub-subscriptions-ejb</artifactId>
+            <type>ejb</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
+            <artifactId>sportsclub-subscriptions-web</artifactId>
             <type>war</type>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -126,6 +141,36 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>aopalliance</groupId>
+                    <artifactId>aopalliance</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <exclusions>
                 <exclusion>
@@ -154,40 +199,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>aopalliance</groupId>
-                    <artifactId>aopalliance</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-expression</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-            </exclusions>
-
-        </dependency>
-
-
     </dependencies>
 
     <build>
@@ -241,6 +252,18 @@
                             <bundleFileName>sportsclub-invoicing-webmvc.war</bundleFileName>
                         </webModule>
                     </modules>
+                </configuration>
+            </plugin>
+
+            <!-- Deployent on AS from console -->
+            <!-- This plugin will allow you to deploy this EAR from the command line when you do a Maven build.  Use
+                 the following at the Parent module: mvn clean package jboss-as:deploy -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${version.jboss.maven.plugin}</version>
+                <configuration>
+                    <skip>false</skip>
                 </configuration>
             </plugin>
         </plugins>

@@ -5,40 +5,39 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.MembershipReposit
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+
 import java.util.List;
 
 /**
  * @author Marius Bogoevici
  */
 @Repository
-public class JpaMembershipRepository extends JpaRepository<Membership, String> implements MembershipRepository
-{
+public class JpaMembershipRepository extends JpaRepository<Membership, String> implements MembershipRepository {
 
-   public JpaMembershipRepository()
-   {
-      super(Membership.class);
-   }
+    public JpaMembershipRepository() {
+        super(Membership.class);
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<Membership> findAllActiveMembershipTypes()
-   {
-      Query query = entityManager.createQuery("FROM " + Membership.class.getSimpleName() + " m WHERE m.active = :active");
-      query.setParameter("active", true);
-      return query.getResultList();
-   }
+    @SuppressWarnings("unchecked")
+    public List<Membership> findAllActiveMembershipTypes() {
+        Query query = entityManager.createQuery("FROM " + Membership.class.getSimpleName() + " m "
+                                              + "WHERE m.active = :active");
+        query.setParameter("active", true);
+        return query.getResultList();
+    }
 
-   public long countAll()
-   {
-      Query query = entityManager.createQuery("SELECT COUNT(code) FROM " + Membership.class.getSimpleName());
-      return (Long) query.getSingleResult();
-   }
+    public long countAll() {
+        Query query = entityManager.createQuery("SELECT COUNT(code) "
+                                              + "FROM " + Membership.class.getSimpleName());
+        return (Long) query.getSingleResult();
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<String> findAllMembershipCodes()
-   {
-      Query query = entityManager.createQuery("SELECT m.code FROM " + Membership.class.getSimpleName() + " m WHERE m.active = :active");
-      query.setParameter("active", true);
-      return query.getResultList();
-   }
+    @SuppressWarnings("unchecked")
+    public List<String> findAllMembershipCodes() {
+        Query query = entityManager.createQuery("SELECT m.code "
+                                              + "FROM " + Membership.class.getSimpleName() + " m "
+                                              + "WHERE m.active = :active");
+        query.setParameter("active", true);
+        return query.getResultList();
+    }
 }
-

@@ -27,15 +27,8 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring-beans.xml</param-value>
-      </context-param>
-      <context-param>
-        <param-name>locatorFactorySelector</param-name>
-        <param-value>classpath*:beanRefContext.xml</param-value>
-      </context-param>
-      <context-param>
-        <param-name>parentContextKey</param-name>
-        <param-value>app.context</param-value>
-      </context-param>
+    </context-param>
+
       <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
       </listener>

@@ -18,56 +18,47 @@ import java.util.List;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 @Transactional(readOnly = true)
-public class EquipmentServiceImpl  implements EquipmentService
-{
-   private EquipmentRepository equipmentRepository;
+public class EquipmentServiceImpl implements EquipmentService {
+    private EquipmentRepository equipmentRepository;
 
-   public EquipmentType[] getEquipmentTypes()
-   {
-      return equipmentRepository.getEquipmentTypes();
-   }
+    public EquipmentType[] getEquipmentTypes() {
+        return equipmentRepository.getEquipmentTypes();
+    }
 
-   public Equipment findEquipmentById(long id)
-   {
-      return equipmentRepository.findById(id);
-   }
+    public Equipment findEquipmentById(long id) {
+        return equipmentRepository.findById(id);
+    }
 
-   public Collection<Equipment> getAllEquipments()
-   {
-      return equipmentRepository.findAll();
-   }
+    public Collection<Equipment> getAllEquipments() {
+        return equipmentRepository.findAll();
+    }
 
-   public Long countAllEquipments()
-   {
-      return equipmentRepository.countAll();
-   }
+    public Long countAllEquipments() {
+        return equipmentRepository.countAll();
+    }
 
-   public Collection<Equipment> getAllEquipments(int firstResult, int maxResults)
-   {
-      RangeCriteria criteria = new RangeCriteria();
-      criteria.setRange(new Range(firstResult, maxResults));
-      return equipmentRepository.findByCriteria(criteria);
-   }
+    public Collection<Equipment> getAllEquipments(int firstResult, int maxResults) {
+        RangeCriteria criteria = new RangeCriteria();
+        criteria.setRange(new Range(firstResult, maxResults));
+        return equipmentRepository.findByCriteria(criteria);
+    }
 
-   public List<Equipment> getUnreservedEquipments(Date fromDate, Date toDate, Integer nim, Integer max, List<EquipmentType> types)
-   {
-      ReservationSearchCriteria criteria = createReservationSearchCriteria(fromDate, toDate, nim, max, types);
-      return equipmentRepository.findUnreserved(criteria);
-   }
+    public List<Equipment> getUnreservedEquipments(Date fromDate, Date toDate, Integer nim, Integer max,
+            List<EquipmentType> types) {
+        ReservationSearchCriteria criteria = createReservationSearchCriteria(fromDate, toDate, nim, max, types);
+        return equipmentRepository.findUnreserved(criteria);
+    }
 
-   public Long countUnreservedEquipmentsForRange(Date fromDate, Date toDate, List<EquipmentType> types)
-   {
-      ReservationSearchCriteria criteria = createReservationSearchCriteria(fromDate, toDate, 0, 0, types);
-      return equipmentRepository.countUnreserved(criteria);
-   }
+    public Long countUnreservedEquipmentsForRange(Date fromDate, Date toDate, List<EquipmentType> types) {
+        ReservationSearchCriteria criteria = createReservationSearchCriteria(fromDate, toDate, 0, 0, types);
+        return equipmentRepository.countUnreserved(criteria);
+    }
 
-   public EquipmentRepository getEquipmentRepository()
-   {
-      return equipmentRepository;
-   }
+    public EquipmentRepository getEquipmentRepository() {
+        return equipmentRepository;
+    }
 
-   public void setEquipmentRepository(EquipmentRepository equipmentRepository)
-   {
-      this.equipmentRepository = equipmentRepository;
-   }
+    public void setEquipmentRepository(EquipmentRepository equipmentRepository) {
+        this.equipmentRepository = equipmentRepository;
+    }
 }

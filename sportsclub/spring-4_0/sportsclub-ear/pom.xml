@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>sportsclub-parent</artifactId>
         <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
         <version>3.1.2-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
+
     <artifactId>sportsclub-ear</artifactId>
     <packaging>ear</packaging>
+
     <name>Sports Club EAR builder</name>
 
     <dependencies>
+        <!-- Local -->
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-subscriptions-ejb</artifactId>
@@ -27,19 +31,15 @@
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-domain</artifactId>
-            <type>jar</type>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-hibernate-dao</artifactId>
-            <type>jar</type>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-reservations-spring</artifactId>
-            <type>jar</type>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -66,6 +66,8 @@
             <type>war</type>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -126,6 +128,36 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>aopalliance</groupId>
+                    <artifactId>aopalliance</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <exclusions>
                 <exclusion>
@@ -154,40 +186,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>aopalliance</groupId>
-                    <artifactId>aopalliance</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-expression</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-            </exclusions>
-
-        </dependency>
-
-
     </dependencies>
 
     <build>

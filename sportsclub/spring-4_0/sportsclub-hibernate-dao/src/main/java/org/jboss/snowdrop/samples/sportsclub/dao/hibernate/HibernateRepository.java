@@ -12,65 +12,55 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria.Range;
 
 /**
  * Abstract repository using Hibernate SessionFactory.
- *
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * 
+ * @author Marius Bogoevici</a>
  */
-public abstract class HibernateRepository<T, I extends Serializable> implements Repository<T, I>
-{
-   protected SessionFactory sessionFactory;
+public abstract class HibernateRepository<T, I extends Serializable> implements Repository<T, I> {
 
-   Class<T> clazz;
+    protected SessionFactory sessionFactory;
 
-   public HibernateRepository(Class<T> clazz)
-   {
-      this.clazz = clazz;
-   }
+    Class<T> clazz;
 
-   public void setSessionFactory(SessionFactory sessionFactory)
-   {
-      this.sessionFactory = sessionFactory;
-   }
+    public HibernateRepository(Class<T> clazz) {
+        this.clazz = clazz;
+    }
 
-   protected Session getCurrentSession()
-   {
-      return this.sessionFactory.getCurrentSession();
-   }
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-   @SuppressWarnings("unchecked")
-   public T findById(I id)
-   {
-      return (T)getCurrentSession().get(clazz, id);
-   }
+    protected Session getCurrentSession() {
+        return this.sessionFactory.getCurrentSession();
+    }
 
-   @SuppressWarnings("unchecked")
-   public T save(T object)
-   {
-       T mergedInstance = (T) getCurrentSession().merge(object);
-       //force a flush to refresh the id
-       getCurrentSession().flush();
-       return mergedInstance;
-   }
+    @SuppressWarnings("unchecked")
+    public T findById(I id) {
+        return (T) getCurrentSession().get(clazz, id);
+    }
 
-   public void delete(T object)
-   {
-      getCurrentSession().delete(object);
-   }
+    @SuppressWarnings("unchecked")
+    public T save(T object) {
+        T mergedInstance = (T) getCurrentSession().merge(object);
+        // force a flush to refresh the id
+        getCurrentSession().flush();
+        return mergedInstance;
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<T> findAll()
-   {
-      return getCurrentSession().createCriteria(clazz).list();
-   }
+    public void delete(T object) {
+        getCurrentSession().delete(object);
+    }
 
+    @SuppressWarnings("unchecked")
+    public List<T> findAll() {
+        return getCurrentSession().createCriteria(clazz).list();
+    }
 
-   public long countAll()
-   {
-      return (Long)getCurrentSession().createCriteria(clazz).setProjection(Projections.count("id")).uniqueResult();
-   }
+    public long countAll() {
+        return (Long) getCurrentSession().createCriteria(clazz).setProjection(Projections.count("id")).uniqueResult();
+    }
 
-   public Criteria applyRange(Criteria criteria, Range range)
-   {
-      return criteria.setFirstResult(range.getMinIndex()).setMaxResults(range.length());
-   }
+    public Criteria applyRange(Criteria criteria, Range range) {
+        return criteria.setFirstResult(range.getMinIndex()).setMaxResults(range.length());
+    }
 
 }

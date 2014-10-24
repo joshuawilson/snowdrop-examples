@@ -12,49 +12,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Abstract repository using JPA EntityManager.
- *
+ * 
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public abstract class JpaRepository<T, I extends Serializable> implements Repository<T, I>
-{
-   @Autowired
-   protected EntityManager entityManager;
+public abstract class JpaRepository<T, I extends Serializable> implements Repository<T, I> {
 
-   Class<T> clazz;
+    @Autowired
+    protected EntityManager entityManager;
 
-   public JpaRepository(Class<T> clazz)
-   {
-      this.clazz = clazz;
-   }
+    Class<T> clazz;
 
-   public T findById(I id)
-   {
-      return this.entityManager.find(clazz, id);
-   }
+    public JpaRepository(Class<T> clazz) {
+        this.clazz = clazz;
+    }
 
-   public T save(T object)
-   {
-      return this.entityManager.merge(object);
-   }
+    public T findById(I id) {
+        return this.entityManager.find(clazz, id);
+    }
 
-   public void delete(T object)
-   {
-      this.entityManager.remove(object);
-   }
+    public T save(T object) {
+        return this.entityManager.merge(object);
+    }
 
-   @SuppressWarnings("unchecked")
-   public List<T> findAll()
-   {
-      return entityManager.createQuery("SELECT c FROM " + clazz.getSimpleName() + " c").getResultList();
-   }
+    public void delete(T object) {
+        this.entityManager.remove(object);
+    }
 
-   public long countAll()
-   {
-      return (Long)entityManager.createQuery("SELECT COUNT(c) FROM " + clazz.getSimpleName() + " c").getSingleResult();
-   }
+    @SuppressWarnings("unchecked")
+    public List<T> findAll() {
+        return entityManager.createQuery("SELECT c FROM " + clazz.getSimpleName() + " c").getResultList();
+    }
 
-   public Query applyRange(Query query, Range range)
-   {
-      return query.setFirstResult(range.getMinIndex()).setMaxResults(range.length());
-   }
+    public long countAll() {
+        return (Long) entityManager.createQuery("SELECT COUNT(c) FROM " + clazz.getSimpleName() + " c").getSingleResult();
+    }
+
+    public Query applyRange(Query query, Range range) {
+        return query.setFirstResult(range.getMinIndex()).setMaxResults(range.length());
+    }
 }
