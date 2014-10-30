@@ -26,64 +26,59 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
                                    "classpath:TEST-jpa-infrastructure.xml",
                                    "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestJpaAccountRepository
-{
-   @Autowired
-   AccountRepository accountRepository;
+public class TestJpaAccountRepository {
 
-   @Autowired
-   InvoiceRepository invoiceRepository;
-   
-   public static final Date TEST_DATE = new GregorianCalendar(2010, 1, 4).getTime();
+    @Autowired
+    AccountRepository accountRepository;
 
-   @Test
-   public void testAccountRepository()
-   {
-      Collection<Account> accounts = accountRepository.findAll();
-      Assert.assertEquals(12, accounts.size());
+    @Autowired
+    InvoiceRepository invoiceRepository;
 
-      AccountSearchCriteria criteria = new AccountSearchCriteria();
-      PersonSearchCriteria personCriteria = new PersonSearchCriteria();
-      personCriteria.setName("Vetinari");
-      criteria.setPersonSearchCriteria(personCriteria);
-      List<Account> accountList = accountRepository.findByCriteria(criteria);
-      Account account = accountList.get(0);
-      Assert.assertNotNull(account.getBalance());
-   }
+    public static final Date TEST_DATE = new GregorianCalendar(2010, 1, 4).getTime();
 
-   @Test
-   public void testRangeCriteria()
-   {
-      AccountSearchCriteria criteria = new AccountSearchCriteria();
-      criteria.setRange(new Range(1,3));
-      List<Account> accountList = accountRepository.findByCriteria(criteria);
-      Assert.assertEquals(3, accountList.size());
-   }
+    @Test
+    public void testAccountRepository() {
+        Collection<Account> accounts = accountRepository.findAll();
+        Assert.assertEquals(12, accounts.size());
 
-   @Test
-   public void testAccountRepositoryWithInvoices()
-   {
-      AccountSearchCriteria criteria = new AccountSearchCriteria();
-      criteria.setInvoiceSearchCriteria(new InvoiceSearchCriteria(TEST_DATE));
-      criteria.getInvoiceSearchCriteria().setExistingInvoice(true);
-      List<Account> accountList = accountRepository.findByCriteria(criteria);
-      Assert.assertEquals(1, accountList.size());
-      Account account = accountList.get(0);
-      Assert.assertEquals(new Long(2L), account.getId());
-      Assert.assertNotNull(account.getBalance());
-   }
+        AccountSearchCriteria criteria = new AccountSearchCriteria();
+        PersonSearchCriteria personCriteria = new PersonSearchCriteria();
+        personCriteria.setName("Vetinari");
+        criteria.setPersonSearchCriteria(personCriteria);
+        List<Account> accountList = accountRepository.findByCriteria(criteria);
+        Account account = accountList.get(0);
+        Assert.assertNotNull(account.getBalance());
+    }
 
-   @Test
-   public void testAccountRepositoryWithoutInvoices()
-   {
-      AccountSearchCriteria criteria = new AccountSearchCriteria();
-      criteria.setInvoiceSearchCriteria(new InvoiceSearchCriteria(TEST_DATE));
-      criteria.getInvoiceSearchCriteria().setExistingInvoice(false);
-      List<Account> accountList = accountRepository.findByCriteria(criteria);
-      Assert.assertEquals(11, accountList.size());
-      for (Account account : accountList)
-      {
-         Assert.assertFalse(2l == account.getId());
-      }      
-   }
+    @Test
+    public void testRangeCriteria() {
+        AccountSearchCriteria criteria = new AccountSearchCriteria();
+        criteria.setRange(new Range(1, 3));
+        List<Account> accountList = accountRepository.findByCriteria(criteria);
+        Assert.assertEquals(3, accountList.size());
+    }
+
+    @Test
+    public void testAccountRepositoryWithInvoices() {
+        AccountSearchCriteria criteria = new AccountSearchCriteria();
+        criteria.setInvoiceSearchCriteria(new InvoiceSearchCriteria(TEST_DATE));
+        criteria.getInvoiceSearchCriteria().setExistingInvoice(true);
+        List<Account> accountList = accountRepository.findByCriteria(criteria);
+        Assert.assertEquals(1, accountList.size());
+        Account account = accountList.get(0);
+        Assert.assertEquals(new Long(2L), account.getId());
+        Assert.assertNotNull(account.getBalance());
+    }
+
+    @Test
+    public void testAccountRepositoryWithoutInvoices() {
+        AccountSearchCriteria criteria = new AccountSearchCriteria();
+        criteria.setInvoiceSearchCriteria(new InvoiceSearchCriteria(TEST_DATE));
+        criteria.getInvoiceSearchCriteria().setExistingInvoice(false);
+        List<Account> accountList = accountRepository.findByCriteria(criteria);
+        Assert.assertEquals(11, accountList.size());
+        for (Account account : accountList) {
+            Assert.assertFalse(2l == account.getId());
+        }
+    }
 }

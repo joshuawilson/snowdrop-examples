@@ -5,72 +5,60 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Embeddable
-public class Address implements Serializable
-{
+public class Address implements Serializable {
 
-	private static final long serialVersionUID = -37287373749805935L;
+    private static final long serialVersionUID = -37287373749805935L;
 
-   private String streetAddress;
+    private String streetAddress;
 
-   private String city;
+    private String city;
 
-   private String provinceOrState;
+    private String provinceOrState;
 
-   private String country;
+    private String country;
 
-   private String postalCode;
+    private String postalCode;
 
-   public String getCity()
-   {
-      return city;
-   }
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-   public void setCity(String city)
-   {
-      this.city = city;
-   }
+    public String getProvinceOrState() {
+        return provinceOrState;
+    }
 
-   public String getProvinceOrState()
-   {
-      return provinceOrState;
-   }
+    public void setProvinceOrState(String provinceOrState) {
+        this.provinceOrState = provinceOrState;
+    }
 
-   public void setProvinceOrState(String provinceOrState)
-   {
-      this.provinceOrState = provinceOrState;
-   }
+    public String getStreetAddress() {
+        return streetAddress;
+    }
 
-   public String getStreetAddress()
-   {
-      return streetAddress;
-   }
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
 
-   public void setStreetAddress(String streetAddress)
-   {
-      this.streetAddress = streetAddress;
-   }
-
-    public String getCountry()
-    {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country)
-    {
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    public String getPostalCode()
-    {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode)
-    {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 }

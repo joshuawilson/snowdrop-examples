@@ -13,7 +13,6 @@
 
     <bean id="reservationCreate" class="org.jboss.snowdrop.samples.sportsclub.reservations.webflow.beans.ReservationCreate"/>
 
-
     <bean id="reservationSearch" class="org.jboss.snowdrop.samples.sportsclub.reservations.webflow.beans.ReservationSearch" scope="session">
         <property name="reservationService" ref="reservationService"/>
         <property name="tableState" ref="reservationSearchTableState"/>

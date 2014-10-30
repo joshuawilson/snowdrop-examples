@@ -8,62 +8,53 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Name;
 import org.jboss.snowdrop.samples.sportsclub.domain.entity.Person;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public class AccountCreate extends AccountBase
-{
+public class AccountCreate extends AccountBase {
 
-   private Person person;
+    private Person person;
 
-   private BillingType billingType;
+    private BillingType billingType;
 
-   @PostConstruct
-   public void initPerson()
-   {
-      person = new Person();
-      person.setAddress(new Address());
-      person.setName(new Name());
-   }
+    @PostConstruct
+    public void initPerson() {
+        person = new Person();
+        person.setAddress(new Address());
+        person.setName(new Name());
+    }
 
-   // reference data
+    // reference data
 
-   private String membershipType;
+    private String membershipType;
 
-   public Person getPerson()
-   {
-      return person;
-   }
+    public Person getPerson() {
+        return person;
+    }
 
-   public void setPerson(Person person)
-   {
-      this.person = person;
-   }
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
-   public String create()
-   {
-      account = subscriptionService.createAccount(person, membershipType, billingType);
+    public String create() {
+        account = subscriptionService.createAccount(person, membershipType, billingType);
 
-      return "success";
-   }
+        return "success";
+    }
 
-   public void setMembershipType(String membershipType)
-   {
-      this.membershipType = membershipType;
-   }
+    public void setMembershipType(String membershipType) {
+        this.membershipType = membershipType;
+    }
 
-   public String getMembershipType()
-   {
-      return membershipType;
-   }
+    public String getMembershipType() {
+        return membershipType;
+    }
 
-   public void setBillingType(BillingType billingType)
-   {
-      this.billingType = billingType;
-   }
+    public void setBillingType(BillingType billingType) {
+        this.billingType = billingType;
+    }
 
-   public BillingType getBillingType()
-   {
-      return billingType;
-   }
+    public BillingType getBillingType() {
+        return billingType;
+    }
 
 }

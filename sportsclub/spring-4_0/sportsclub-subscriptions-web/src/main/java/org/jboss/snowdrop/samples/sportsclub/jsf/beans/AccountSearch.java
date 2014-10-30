@@ -18,7 +18,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Account;
 import org.jboss.snowdrop.samples.sportsclub.ejb.SubscriptionService;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public class AccountSearch extends ExtendedDataModel<Account> {
 
@@ -28,7 +28,6 @@ public class AccountSearch extends ExtendedDataModel<Account> {
     private String name;
 
     private int currentPage = 1;
-
 
     private Long currentId;
 
@@ -54,7 +53,7 @@ public class AccountSearch extends ExtendedDataModel<Account> {
 
     public String searchAccounts() {
         rowCount = subscriptionService.countAccountsBySubscriberName(name);
-        this.dirty=true;
+        this.dirty = true;
         currentPage = 1;
         return "success";
     }
@@ -141,7 +140,7 @@ public class AccountSearch extends ExtendedDataModel<Account> {
     public Account getCurrentAccount() {
         Long selectedKey = getSelectedKey();
 
-        return selectedKey != null? accountsMap.get(selectedKey):null;
+        return selectedKey != null ? accountsMap.get(selectedKey) : null;
     }
 
     private Long getSelectedKey() {
@@ -179,7 +178,6 @@ public class AccountSearch extends ExtendedDataModel<Account> {
         subscriptionService.updateAccount(getCurrentAccount());
         this.editing = false;
     }
-
 
     public void selectionListener(AjaxBehaviorEvent event) {
         // do nothing

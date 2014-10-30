@@ -9,23 +9,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(namespace = "http://ws.sportsclub.samples.snowdrop.jboss.org/", name = "notifyPaymentResponse")
 @XmlType(name = "notifyPaymentResponse")
-public class PaymentResponse
-{
-   @XmlElement(name = "return")
-   private Long paymentId;
+public class PaymentResponse {
 
-   public PaymentResponse()
-   {
-   }
+    @XmlElement(name = "return")
+    private Long paymentId;
 
-   public PaymentResponse(Long paymentId)
-   {
-      this.paymentId = paymentId;
-   }
+    public PaymentResponse() {
+    }
 
-   public Long getPaymentId()
-   {
-      return paymentId;
-   }
+    public PaymentResponse(Long paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public Long getPaymentId() {
+        return paymentId;
+    }
 }
-

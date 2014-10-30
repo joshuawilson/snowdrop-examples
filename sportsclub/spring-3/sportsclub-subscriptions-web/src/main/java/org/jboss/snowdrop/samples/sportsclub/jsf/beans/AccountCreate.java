@@ -8,7 +8,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Name;
 import org.jboss.snowdrop.samples.sportsclub.domain.entity.Person;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public class AccountCreate extends AccountBase
 {

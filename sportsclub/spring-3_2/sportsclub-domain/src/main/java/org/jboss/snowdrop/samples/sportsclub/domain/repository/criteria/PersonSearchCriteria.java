@@ -1,31 +1,27 @@
 package org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public class PersonSearchCriteria extends RangeCriteria
-{
-   private String name;
+public class PersonSearchCriteria extends RangeCriteria {
 
-   private String city;
+    private String name;
 
-   public String getCity()
-   {
-      return city;
-   }
+    private String city;
 
-   public void setCity(String city)
-   {
-      this.city = city;
-   }
+    public String getCity() {
+        return city;
+    }
 
-   public String getName()
-   {
-      return name;
-   }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-   public void setName(String name)
-   {
-      this.name = name;
-   }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

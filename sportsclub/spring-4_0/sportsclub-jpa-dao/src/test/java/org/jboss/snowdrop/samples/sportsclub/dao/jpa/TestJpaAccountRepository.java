@@ -26,10 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
                                    "classpath:TEST-jpa-infrastructure.xml",
                                    "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestJpaAccountRepository
-{
-   @Autowired
-   AccountRepository accountRepository;
+public class TestJpaAccountRepository {
 
    @Autowired
    InvoiceRepository invoiceRepository;

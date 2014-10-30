@@ -10,81 +10,70 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Entity
-public class Person implements Serializable
-{
-	private static final long serialVersionUID = -6900113445717653826L;
+public class Person implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private Long id;
+    private static final long serialVersionUID = -6900113445717653826L;
 
-   @Embedded
-   private Name name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-   @Embedded
-   private Address address;
+    @Embedded
+    private Name name;
 
-   @OneToOne(mappedBy = "subscriber")
-   private Account account;
+    @Embedded
+    private Address address;
 
-   public Address getAddress()
-   {
-      return address;
-   }
+    @OneToOne(mappedBy = "subscriber")
+    private Account account;
 
-   public void setAddress(Address address)
-   {
-      this.address = address;
-   }
+    public Address getAddress() {
+        return address;
+    }
 
-   public Name getName()
-   {
-      return name;
-   }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-   public void setName(Name name)
-   {
-      this.name = name;
-   }
+    public Name getName() {
+        return name;
+    }
 
-   public Account getAccount()
-   {
-      return account;
-   }
+    public void setName(Name name) {
+        this.name = name;
+    }
 
-   public void setAccount(Account account)
-   {
-      this.account = account;
-   }
+    public Account getAccount() {
+        return account;
+    }
 
-   @Override
-   public boolean equals(Object o)
-   {
-      if (this == o)
-      {
-         return true;
-      }
-      if (o == null || getClass() != o.getClass())
-      {
-         return false;
-      }
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
-      Person that = (Person) o;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-      if (id != null ? !id.equals(that.id) : that.id != null)
-      {
-         return false;
-      }
+        Person that = (Person) o;
 
-      return true;
-   }
+        if (id != null ? !id.equals(that.id) : that.id != null) {
+            return false;
+        }
 
-   @Override
-   public int hashCode()
-   {
-      return id != null ? id.hashCode() : 0;
-   }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

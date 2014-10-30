@@ -13,31 +13,26 @@ import org.springframework.stereotype.Component;
  */
 @ManagedResource(objectName = "sportsclub:name=paymentAuditor", description = "Payment Auditor")
 @Component
-public class PaymentAuditor
-{
+public class PaymentAuditor {
 
-   private static final Log LOG = LogFactory.getLog(PaymentAuditor.class);
+    private static final Log LOG = LogFactory.getLog(PaymentAuditor.class);
 
-   private boolean enabled = true;
+    private boolean enabled = true;
 
-   @ManagedAttribute(description = "Audit enabled")
-   public void setEnabled(boolean enabled)
-   {
-      LOG.info("Audit " +  (enabled ? "enabled":"disabled"));
-      this.enabled = enabled;
-   }
+    @ManagedAttribute(description = "Audit enabled")
+    public void setEnabled(boolean enabled) {
+        LOG.info("Audit " + (enabled ? "enabled" : "disabled"));
+        this.enabled = enabled;
+    }
 
-   @ManagedAttribute(description = "Audit enabled")
-   public boolean getEnabled()
-   {
-      return this.enabled;
-   }
+    @ManagedAttribute(description = "Audit enabled")
+    public boolean getEnabled() {
+        return this.enabled;
+    }
 
-   public void auditPayment(Long accountId, BigDecimal amount)
-   {
-      if (this.enabled)
-      {
-         LOG.info("A payment has been made to account " + accountId + " for the amount of " + amount);
-      }
-   }
+    public void auditPayment(Long accountId, BigDecimal amount) {
+        if (this.enabled) {
+            LOG.info("A payment has been made to account " + accountId + " for the amount of " + amount);
+        }
+    }
 }

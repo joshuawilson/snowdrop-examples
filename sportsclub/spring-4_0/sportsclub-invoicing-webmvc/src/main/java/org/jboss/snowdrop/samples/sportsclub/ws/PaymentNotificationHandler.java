@@ -10,16 +10,15 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
  */
 
 @Endpoint
-public class PaymentNotificationHandler
-{
-   @Autowired
-   private PaymentProcessor paymentProcessor;
+public class PaymentNotificationHandler {
 
-   @PayloadRoot(localPart = "notifyPayment", namespace = "http://ws.sportsclub.samples.snowdrop.jboss.org/")
-   public PaymentResponse notifyPayment(PaymentRequest paymentNotification)
-   {
-      Long paymentId = paymentProcessor.processPayment(paymentNotification.getAccountNumber(), paymentNotification.getAmount());
-      return new PaymentResponse(paymentId);
-   }
+    @Autowired
+    private PaymentProcessor paymentProcessor;
+
+    @PayloadRoot(localPart = "notifyPayment", namespace = "http://ws.sportsclub.samples.snowdrop.jboss.org/")
+    public PaymentResponse notifyPayment(PaymentRequest paymentNotification) {
+        Long paymentId = paymentProcessor.processPayment(paymentNotification.getAccountNumber(), paymentNotification.getAmount());
+        return new PaymentResponse(paymentId);
+    }
 
 }

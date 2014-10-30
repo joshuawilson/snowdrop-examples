@@ -14,23 +14,20 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  * @author Marius Bogoevici
  */
 @WebService
-public class PaymentNotificationService
-{
+public class PaymentNotificationService {
 
-   @Autowired
-   private PaymentProcessor paymentProcessor;
+    @Autowired
+    private PaymentProcessor paymentProcessor;
 
-   @WebMethod
-   public Long notifyPayment(@WebParam(name="accountNumber") Long accountNumber, @WebParam(name="amount") BigDecimal amount)
-   {
-      return paymentProcessor.processPayment(accountNumber, amount);
-   }
-   
-   // Ensure that initialization happens after servlet context is started
-   @PostConstruct
-   public void doAfterInitialization() 
-   {
-       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-   }
-  
+    @WebMethod
+    public Long notifyPayment(@WebParam(name = "accountNumber") Long accountNumber, @WebParam(name = "amount") BigDecimal amount) {
+        return paymentProcessor.processPayment(accountNumber, amount);
+    }
+
+    // Ensure that initialization happens after servlet context is started
+    @PostConstruct
+    public void doAfterInitialization() {
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
+
 }

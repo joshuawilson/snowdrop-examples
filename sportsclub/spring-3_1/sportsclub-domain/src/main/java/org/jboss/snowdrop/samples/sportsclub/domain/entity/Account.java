@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 import org.jboss.snowdrop.samples.sportsclub.utils.DateUtils;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Entity
 public class Account implements Serializable

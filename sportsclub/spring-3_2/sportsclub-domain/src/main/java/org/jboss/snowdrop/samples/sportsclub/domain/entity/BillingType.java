@@ -3,27 +3,24 @@ package org.jboss.snowdrop.samples.sportsclub.domain.entity;
 import java.io.Serializable;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public enum BillingType implements Serializable
-{
-   MONTHLY(12),
+public enum BillingType implements Serializable {
+    MONTHLY(12),
 
-   SEMIMONTHLY(24),
+    SEMIMONTHLY(24),
 
-   BIWEEKLY(26),
+    BIWEEKLY(26),
 
-   WEEKLY(52);
+    WEEKLY(52);
 
-   private int periods;
+    private int periods;
 
-   BillingType(int periods)
-   {
-      this.periods = periods;
-   }
+    BillingType(int periods) {
+        this.periods = periods;
+    }
 
-   public int periodsPerYear()
-   {
-     return periods;
-   }
+    public int periodsPerYear() {
+        return periods;
+    }
 }

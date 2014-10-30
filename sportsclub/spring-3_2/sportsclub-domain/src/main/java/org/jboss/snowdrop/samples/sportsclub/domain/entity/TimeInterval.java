@@ -12,42 +12,37 @@ import org.jboss.snowdrop.samples.sportsclub.utils.DateUtils;
  * @author Marius Bogoevici
  */
 @Embeddable
-public class TimeInterval implements Serializable
-{
-	private static final long serialVersionUID = -8477277838740499216L;
+public class TimeInterval implements Serializable {
 
-   public static final TimeZone TIME_ZONE = TimeZone.getTimeZone("EST");
+    private static final long serialVersionUID = -8477277838740499216L;
 
-   public static final long TWO_WEEKS = (14 * 24 * 3600 * 1000);
-   public static final long DAY = 24 * 3600 * 1000;
+    public static final TimeZone TIME_ZONE = TimeZone.getTimeZone("EST");
 
-   private Date startDate;
+    public static final long TWO_WEEKS = (14 * 24 * 3600 * 1000);
+    public static final long DAY = 24 * 3600 * 1000;
 
-   private Date endDate;
+    private Date startDate;
 
-   public Date getEndDate()
-   {
-      return endDate;
-   }
+    private Date endDate;
 
-   public void setEndDate(Date endDate)
-   {
-      this.endDate = DateUtils.normalizeDate(endDate, TIME_ZONE);
-   }
+    public Date getEndDate() {
+        return endDate;
+    }
 
-   public Date getStartDate()
-   {
-      return startDate;
-   }
+    public void setEndDate(Date endDate) {
+        this.endDate = DateUtils.normalizeDate(endDate, TIME_ZONE);
+    }
 
-   public void setStartDate(Date startDate)
-   {
-      this.startDate = DateUtils.normalizeDate(startDate, TIME_ZONE);
-   }
+    public Date getStartDate() {
+        return startDate;
+    }
 
-   public boolean contains(Date someDate)
-   {
-      Date normalizeDate = DateUtils.normalizeDate(someDate,TIME_ZONE);
-      return normalizeDate.compareTo(startDate) >= 0 && normalizeDate.compareTo(endDate)<=0;
-   }
+    public void setStartDate(Date startDate) {
+        this.startDate = DateUtils.normalizeDate(startDate, TIME_ZONE);
+    }
+
+    public boolean contains(Date someDate) {
+        Date normalizeDate = DateUtils.normalizeDate(someDate, TIME_ZONE);
+        return normalizeDate.compareTo(startDate) >= 0 && normalizeDate.compareTo(endDate) <= 0;
+    }
 }

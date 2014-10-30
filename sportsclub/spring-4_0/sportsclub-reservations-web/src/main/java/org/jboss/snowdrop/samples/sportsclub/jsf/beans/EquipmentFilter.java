@@ -14,62 +14,53 @@ import java.util.List;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class EquipmentFilter extends AbstractExtendedDataModelHelper<Equipment>
-{
-   private EquipmentService equipmentService;
-   private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
+public class EquipmentFilter extends AbstractExtendedDataModelHelper<Equipment> {
 
-   public EquipmentFilter()
-   {
-      super();
-   }
+    private EquipmentService equipmentService;
+    private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
 
-   public Map<Long, Equipment> getDomainObjectMap()
-   {
-      return equipmentMap;
-   }
+    public EquipmentFilter() {
+        super();
+    }
 
-   public Long getCurrentRowCount()
-   {
-      return equipmentService.countAllEquipments();
-   }
+    public Map<Long, Equipment> getDomainObjectMap() {
+        return equipmentMap;
+    }
 
-   public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument)
-   {
-      int firstResult = ((SequenceRange) range).getFirstRow();
-      int maxResults = ((SequenceRange) range).getRows();
-      List<Equipment> equipments = (List<Equipment>) equipmentService.getAllEquipments(firstResult, maxResults);
-      for (Equipment e : equipments)
-      {
-         Long id = e.getId();
-         equipmentMap.put(id, e);
-         dataVisitor.process(facesContext, id, argument);
-      }
-   }
+    public Long getCurrentRowCount() {
+        return equipmentService.countAllEquipments();
+    }
 
-   private Long getSelectedKey()
-   {
-      if (getSelection() == null || getSelection().size() == 0)
-         return null;
-      else
-         return ((Long) getSelection().iterator().next());
-   }
+    public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument) {
+        int firstResult = ((SequenceRange) range).getFirstRow();
+        int maxResults = ((SequenceRange) range).getRows();
+        List<Equipment> equipments = (List<Equipment>) equipmentService.getAllEquipments(firstResult, maxResults);
+        for (Equipment e : equipments) {
+            Long id = e.getId();
+            equipmentMap.put(id, e);
+            dataVisitor.process(facesContext, id, argument);
+        }
+    }
 
-   public Equipment getSelectedEquipment()
-   {
-      if (getSelection() != null && getSelection().size() > 0)
-         return equipmentMap.get(getSelectedKey());
-      else
-         return null;
-   }
+    private Long getSelectedKey() {
+        if (getSelection() == null || getSelection().size() == 0)
+            return null;
+        else
+            return ((Long) getSelection().iterator().next());
+    }
 
-   public EquipmentService getEquipmentService()
-   {
-      return equipmentService;
-   }
+    public Equipment getSelectedEquipment() {
+        if (getSelection() != null && getSelection().size() > 0)
+            return equipmentMap.get(getSelectedKey());
+        else
+            return null;
+    }
 
-   public void setEquipmentService(EquipmentService equipmentService)
-   {
-      this.equipmentService = equipmentService;
-   }
+    public EquipmentService getEquipmentService() {
+        return equipmentService;
+    }
+
+    public void setEquipmentService(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
+    }
 }

@@ -11,53 +11,46 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Payment implements Serializable
-{
-	private static final long serialVersionUID = 1886963666174625949L;
+public class Payment implements Serializable {
 
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Id
-   Long id;
+    private static final long serialVersionUID = 1886963666174625949L;
 
-   private BigDecimal amount;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    Long id;
 
-   @ManyToOne
-   private Account account;
+    private BigDecimal amount;
 
-   private Date date;
+    @ManyToOne
+    private Account account;
 
-   public Long getId()
-   {
-      return id;
-   }
+    private Date date;
 
-   public BigDecimal getAmount()
-   {
-      return amount;
-   }
+    public Long getId() {
+        return id;
+    }
 
-   public void setAmount(BigDecimal amount)
-   {
-      this.amount = amount;
-   }
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-   public Account getAccount()
-   {
-      return account;
-   }
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
-   public void setAccount(Account account)
-   {
-      this.account = account;
-   }
+    public Account getAccount() {
+        return account;
+    }
 
-   public Date getDate()
-   {
-      return date;
-   }
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
-   public void setDate(Date date)
-   {
-      this.date = date;
-   }
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

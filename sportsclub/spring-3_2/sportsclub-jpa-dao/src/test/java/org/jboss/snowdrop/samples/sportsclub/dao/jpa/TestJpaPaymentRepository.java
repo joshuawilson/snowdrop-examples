@@ -17,24 +17,22 @@ import junit.framework.Assert;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-@ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-                                   "classpath:TEST-jpa-infrastructure.xml",
-                                   "classpath:dao-context.xml"})
+@ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml", "classpath:TEST-jpa-infrastructure.xml",
+        "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestJpaPaymentRepository
-{
-   @Autowired
-   AccountRepository accountRepository;
+public class TestJpaPaymentRepository {
 
-   @Autowired
-   PaymentRepository paymentRepository;
+    @Autowired
+    AccountRepository accountRepository;
 
-   @Test
-   public void testFindNoPaymentsForAccount()
-   {
-      Account a = accountRepository.findById(2L);
-      List<Payment> payments = paymentRepository.findForAccount(a);
+    @Autowired
+    PaymentRepository paymentRepository;
 
-      Assert.assertEquals(0, payments.size());
-   }
+    @Test
+    public void testFindNoPaymentsForAccount() {
+        Account a = accountRepository.findById(2L);
+        List<Payment> payments = paymentRepository.findForAccount(a);
+
+        Assert.assertEquals(0, payments.size());
+    }
 }

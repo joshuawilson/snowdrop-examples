@@ -6,30 +6,25 @@ import java.math.BigDecimal;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Balance implements Serializable
-{
+public class Balance implements Serializable {
 
-	private static final long serialVersionUID = 7440283939163691421L;
-   
-   private BigDecimal amount;
+    private static final long serialVersionUID = 7440283939163691421L;
 
-   public BigDecimal getAmount()
-   {
-      return amount;
-   }
+    private BigDecimal amount;
 
-   public void setAmount(BigDecimal amount)
-   {
-      this.amount = amount;
-   }
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-   public void credit(BigDecimal amount)
-   {
-      this.amount = this.amount.subtract(amount);
-   }
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
-   public void debit(BigDecimal amount)
-   {
-      this.amount = this.amount.add(amount);
-   }
+    public void credit(BigDecimal amount) {
+        this.amount = this.amount.subtract(amount);
+    }
+
+    public void debit(BigDecimal amount) {
+        this.amount = this.amount.add(amount);
+    }
 }

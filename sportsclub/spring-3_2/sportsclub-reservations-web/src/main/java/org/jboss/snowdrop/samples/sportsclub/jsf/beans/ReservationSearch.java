@@ -19,215 +19,176 @@ import org.jboss.snowdrop.samples.sportsclub.service.ReservationService;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class ReservationSearch extends AbstractExtendedDataModelHelper<Reservation>
-{
-   private ReservationService reservationService;
-   private ReservationSearchOptions reservationSearchOptions;
+public class ReservationSearch extends AbstractExtendedDataModelHelper<Reservation> {
 
-   private Map<Long, Reservation> reservationsMap = new HashMap<Long, Reservation>();
+    private ReservationService reservationService;
+    private ReservationSearchOptions reservationSearchOptions;
 
-   private ReservationTableState tableState;
+    private Map<Long, Reservation> reservationsMap = new HashMap<Long, Reservation>();
 
-   private AccountFilter accountFilter;
-   private EquipmentFilter equipmentFilter;
-   private Locale locale = Locale.getDefault();
-   private Reservation reservation;
+    private ReservationTableState tableState;
 
-   private boolean editing;
+    private AccountFilter accountFilter;
+    private EquipmentFilter equipmentFilter;
+    private Locale locale = Locale.getDefault();
+    private Reservation reservation;
 
-   public ReservationSearch()
-   {
-      super();
-   }
+    private boolean editing;
 
-   public ReservationService getReservationService()
-   {
-      return reservationService;
-   }
+    public ReservationSearch() {
+        super();
+    }
 
-   public void setReservationService(ReservationService reservationService)
-   {
-      this.reservationService = reservationService;
-   }
+    public ReservationService getReservationService() {
+        return reservationService;
+    }
 
-   @Override
-   public Map<Long, Reservation> getDomainObjectMap()
-   {
-      return reservationsMap;
-   }
+    public void setReservationService(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
-   @Override
-   public Long getCurrentRowCount()
-   {
-      return reservationService.countReservationsForRange(
-            reservationSearchOptions.getFromDate(),
-            reservationSearchOptions.getToDate(),
-            reservationSearchOptions.getSelectedEquipmentTypes());
-   }
+    @Override
+    public Map<Long, Reservation> getDomainObjectMap() {
+        return reservationsMap;
+    }
 
-   @Override
-   public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument)
-   {
-      int firstResult = ((SequenceRange) range).getFirstRow();
-      int maxResults = ((SequenceRange) range).getRows();
-      List<Reservation> list = reservationService.getReservations(
-            reservationSearchOptions.getFromDate(),
-            reservationSearchOptions.getToDate(), firstResult, maxResults,
-            reservationSearchOptions.getSelectedEquipmentTypes());
-      reservationsMap = new HashMap<Long, Reservation>();
-      for (Reservation row : list)
-      {
-         Long id = row.getId();
-         reservationsMap.put(id, row);
-         dataVisitor.process(facesContext, id, argument);
-      }
-   }
+    @Override
+    public Long getCurrentRowCount() {
+        return reservationService.countReservationsForRange(reservationSearchOptions.getFromDate(),
+                reservationSearchOptions.getToDate(), reservationSearchOptions.getSelectedEquipmentTypes());
+    }
 
-   public void reservationSelected(AjaxBehaviorEvent event)
-   {
-      if (getSelection() != null && getSelection().size() > 0)
-      {
-         reservation = reservationsMap.get(getSelectedKey());
-      } else
-      {
-         reservation = null;
-         editing = false;
-      }
-      cleanFilters();
-   }
+    @Override
+    public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument) {
+        int firstResult = ((SequenceRange) range).getFirstRow();
+        int maxResults = ((SequenceRange) range).getRows();
+        List<Reservation> list = reservationService.getReservations(reservationSearchOptions.getFromDate(),
+                reservationSearchOptions.getToDate(), firstResult, maxResults,
+                reservationSearchOptions.getSelectedEquipmentTypes());
+        reservationsMap = new HashMap<Long, Reservation>();
+        for (Reservation row : list) {
+            Long id = row.getId();
+            reservationsMap.put(id, row);
+            dataVisitor.process(facesContext, id, argument);
+        }
+    }
 
-   private void cleanFilters()
-   {
-      accountFilter.clearSelection();
-      equipmentFilter.clearSelection();
-   }
+    public void reservationSelected(AjaxBehaviorEvent event) {
+        if (getSelection() != null && getSelection().size() > 0) {
+            reservation = reservationsMap.get(getSelectedKey());
+        } else {
+            reservation = null;
+            editing = false;
+        }
+        cleanFilters();
+    }
 
-   public ReservationTableState getTableState()
-   {
-      return tableState;
-   }
+    private void cleanFilters() {
+        accountFilter.clearSelection();
+        equipmentFilter.clearSelection();
+    }
 
-   public void setTableState(ReservationTableState tableState)
-   {
-      this.tableState = tableState;
-   }
+    public ReservationTableState getTableState() {
+        return tableState;
+    }
 
-   public ReservationSearchOptions getReservationSearchOptions()
-   {
-      return reservationSearchOptions;
-   }
+    public void setTableState(ReservationTableState tableState) {
+        this.tableState = tableState;
+    }
 
-   public void setReservationSearchOptions(ReservationSearchOptions reservationSearchOptions)
-   {
-      this.reservationSearchOptions = reservationSearchOptions;
-   }
+    public ReservationSearchOptions getReservationSearchOptions() {
+        return reservationSearchOptions;
+    }
 
-   private Long getSelectedKey()
-   {
-      if (getSelection() == null || getSelection().size() == 0)
-         return null;
-      else
-         return ((Long) getSelection().iterator().next());
-   }
+    public void setReservationSearchOptions(ReservationSearchOptions reservationSearchOptions) {
+        this.reservationSearchOptions = reservationSearchOptions;
+    }
 
-   public void deleteReservation()
-   {
-      if (reservation != null)
-      {
-         reservationService.delete(reservation);
-         reservation = null;
-      }
-      clearSelection();
-      cleanFilters();
-      resetCurrentRowCount();
-      editing = false;
-   }
+    private Long getSelectedKey() {
+        if (getSelection() == null || getSelection().size() == 0)
+            return null;
+        else
+            return ((Long) getSelection().iterator().next());
+    }
 
-   public void saveCurrent()
-   {
-      if (reservation != null)
-      {
-         reservationService.updateReservation(reservation);
-         reservation = null;
-      }
-      clearSelection();
-      cleanFilters();
-      editing = false;
-   }
+    public void deleteReservation() {
+        if (reservation != null) {
+            reservationService.delete(reservation);
+            reservation = null;
+        }
+        clearSelection();
+        cleanFilters();
+        resetCurrentRowCount();
+        editing = false;
+    }
 
-   public void updateSelectedAccount()
-   {
-      if (accountFilter.getSelection() != null && accountFilter.getSelection().size() > 0)
-      {
-         Account account = accountFilter.getSelectedAccount();
-         reservation.setAccount(account);
-      } else
-      {
-         reservation.setAccount(reservationsMap.get(getSelectedKey()).getAccount());
-      }
-   }
+    public void saveCurrent() {
+        if (reservation != null) {
+            reservationService.updateReservation(reservation);
+            reservation = null;
+        }
+        clearSelection();
+        cleanFilters();
+        editing = false;
+    }
 
-   public void updateSelectedEquipment()
-   {
-      if (equipmentFilter.getSelection() != null && equipmentFilter.getSelection().size() > 0)
-      {
-         Equipment equipment = equipmentFilter.getSelectedEquipment();
-         reservation.setEquipment(equipment);
-      } else
-      {
-         reservation.setEquipment(reservationsMap.get(getSelectedKey()).getEquipment());
-      }
-   }
+    public void updateSelectedAccount() {
+        if (accountFilter.getSelection() != null && accountFilter.getSelection().size() > 0) {
+            Account account = accountFilter.getSelectedAccount();
+            reservation.setAccount(account);
+        } else {
+            reservation.setAccount(reservationsMap.get(getSelectedKey()).getAccount());
+        }
+    }
 
-   public void setEditing(boolean editing)
-   {
-      this.editing = editing;
-   }
+    public void updateSelectedEquipment() {
+        if (equipmentFilter.getSelection() != null && equipmentFilter.getSelection().size() > 0) {
+            Equipment equipment = equipmentFilter.getSelectedEquipment();
+            reservation.setEquipment(equipment);
+        } else {
+            reservation.setEquipment(reservationsMap.get(getSelectedKey()).getEquipment());
+        }
+    }
 
-   public boolean isEditing()
-   {
-      return editing;
-   }
+    public void setEditing(boolean editing) {
+        this.editing = editing;
+    }
 
-   public AccountFilter getAccountFilter()
-   {
-      return accountFilter;
-   }
+    public boolean isEditing() {
+        return editing;
+    }
 
-   public void setAccountFilter(AccountFilter accountFilter)
-   {
-      this.accountFilter = accountFilter;
-   }
+    public AccountFilter getAccountFilter() {
+        return accountFilter;
+    }
 
-   public void refreshCount() 
-   {
-      resetCurrentRowCount();
-      getRowCount();
-      setCurrentPage(1);
-   }
+    public void setAccountFilter(AccountFilter accountFilter) {
+        this.accountFilter = accountFilter;
+    }
 
-   public EquipmentFilter getEquipmentFilter()
-   {
-      return equipmentFilter;
-   }
+    public void refreshCount() {
+        resetCurrentRowCount();
+        getRowCount();
+        setCurrentPage(1);
+    }
 
-   public void setEquipmentFilter(EquipmentFilter equipmentFilter)
-   {
-      this.equipmentFilter = equipmentFilter;
-   }
+    public EquipmentFilter getEquipmentFilter() {
+        return equipmentFilter;
+    }
 
-   public Locale getLocale()
-   {
-      return locale;
-   }
+    public void setEquipmentFilter(EquipmentFilter equipmentFilter) {
+        this.equipmentFilter = equipmentFilter;
+    }
 
-   public void setLocale(Locale locale)
-   {
-      this.locale = locale;
-   }
+    public Locale getLocale() {
+        return locale;
+    }
 
-   public Reservation getReservation()
-   {
-      return reservation;
-   }
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
 }

@@ -5,7 +5,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Account;
 
 import java.util.List;
 
-public interface PaymentRepository extends Repository<Payment, Long>
-{
-   List<Payment> findForAccount(Account account);
+public interface PaymentRepository extends Repository<Payment, Long> {
+
+    List<Payment> findForAccount(Account account);
 }

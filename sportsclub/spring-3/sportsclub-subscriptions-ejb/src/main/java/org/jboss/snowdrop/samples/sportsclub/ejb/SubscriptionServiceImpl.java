@@ -19,7 +19,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria.Range;
 import org.jboss.spring.callback.SpringLifecycleInterceptor;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Stateless
 @Interceptors(SpringLifecycleInterceptor.class)

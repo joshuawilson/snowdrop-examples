@@ -5,9 +5,8 @@ import java.util.List;
 import org.jboss.snowdrop.samples.sportsclub.domain.entity.Account;
 import org.jboss.snowdrop.samples.sportsclub.domain.entity.Invoice;
 
-public interface InvoiceRepository extends Repository<Invoice, Long>
-{
+public interface InvoiceRepository extends Repository<Invoice, Long> {
 
-   List<Invoice> findForAccount(Account account);
+    List<Invoice> findForAccount(Account account);
 
 }

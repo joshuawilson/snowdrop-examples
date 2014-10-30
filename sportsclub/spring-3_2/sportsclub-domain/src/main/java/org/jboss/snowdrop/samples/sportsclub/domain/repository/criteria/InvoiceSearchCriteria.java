@@ -8,31 +8,26 @@ import org.jboss.snowdrop.samples.sportsclub.utils.DateUtils;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class InvoiceSearchCriteria
-{
-   private Date referenceDate;
+public class InvoiceSearchCriteria {
 
-   private boolean existingInvoice;
+    private Date referenceDate;
 
-   public InvoiceSearchCriteria(Date referenceDate)
-   {
-      this.referenceDate = DateUtils.normalizeDate(referenceDate, TimeZone.getTimeZone("EST"));
-   }
+    private boolean existingInvoice;
 
-   public void setExistingInvoice(boolean existingInvoice)
-   {
-      this.existingInvoice = existingInvoice;
-   }
+    public InvoiceSearchCriteria(Date referenceDate) {
+        this.referenceDate = DateUtils.normalizeDate(referenceDate, TimeZone.getTimeZone("EST"));
+    }
 
-   public boolean isExistingInvoice()
-   {
-      return existingInvoice;
-   }
+    public void setExistingInvoice(boolean existingInvoice) {
+        this.existingInvoice = existingInvoice;
+    }
 
-   public Date getReferenceDate()
-   {
-      return referenceDate;
-   }
+    public boolean isExistingInvoice() {
+        return existingInvoice;
+    }
 
+    public Date getReferenceDate() {
+        return referenceDate;
+    }
 
 }

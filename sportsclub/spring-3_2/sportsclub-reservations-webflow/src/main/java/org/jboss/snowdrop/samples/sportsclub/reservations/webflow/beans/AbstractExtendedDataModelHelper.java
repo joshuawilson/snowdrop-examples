@@ -6,119 +6,103 @@ import java.util.Map;
 import org.ajax4jsf.model.ExtendedDataModel;
 
 /**
- * Abstract helper class for JSF backing beans serving {#link ExtendedDataModel} implementations. 
- *
+ * Abstract helper class for JSF backing beans serving {#link ExtendedDataModel} implementations.
+ * 
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public abstract class AbstractExtendedDataModelHelper extends ExtendedDataModel
-{
-   private int currentPage = 1;
-   private int currentRow;
-   private Long currentId;
-   private Long currentRowCount;
-   protected Collection<Object> selection;
+public abstract class AbstractExtendedDataModelHelper extends ExtendedDataModel {
 
-   abstract public Map<Long,? extends Object> getDomainObjectMap();
+    private int currentPage = 1;
+    private int currentRow;
+    private Long currentId;
+    private Long currentRowCount;
+    protected Collection<Object> selection;
 
-   abstract public Long getCurrentRowCount();
+    abstract public Map<Long, ? extends Object> getDomainObjectMap();
 
-   public Long getCurrentId()
-   {
-      return currentId;
-   }
+    abstract public Long getCurrentRowCount();
 
-   @Override
-   public Object getRowKey()
-   {
-      return currentId;
-   }
+    public Long getCurrentId() {
+        return currentId;
+    }
 
-   @Override
-   public void setRowKey(Object key)
-   {
-      if (key != null)
-         currentId = (Long) key;
-   }
+    @Override
+    public Object getRowKey() {
+        return currentId;
+    }
 
-   @Override
-   public int getRowIndex()
-   {
-      return currentRow;
-   }
+    @Override
+    public void setRowKey(Object key) {
+        if (key != null)
+            currentId = (Long) key;
+    }
 
-   @Override
-   public void setRowIndex(int rowIndex)
-   {
-      this.currentRow = rowIndex;
-   }
+    @Override
+    public int getRowIndex() {
+        return currentRow;
+    }
 
-   @Override
-   public Object getWrappedData()
-   {
-      throw new UnsupportedOperationException("Not supported");
-   }
+    @Override
+    public void setRowIndex(int rowIndex) {
+        this.currentRow = rowIndex;
+    }
 
-   @Override
-   public void setWrappedData(Object data)
-   {
-      throw new UnsupportedOperationException("Not supported");
-   }
+    @Override
+    public Object getWrappedData() {
+        throw new UnsupportedOperationException("Not supported");
+    }
 
-   @Override
-   public int getRowCount()
-   {
-      if (currentRowCount == null)
-      {
-         currentRowCount = getCurrentRowCount();
-      }
-      return currentRowCount.intValue();
-   }
+    @Override
+    public void setWrappedData(Object data) {
+        throw new UnsupportedOperationException("Not supported");
+    }
 
-   public void resetCurrentRowCount()
-   {
-      currentRowCount = null;
-   }
+    @Override
+    public int getRowCount() {
+        if (currentRowCount == null) {
+            currentRowCount = getCurrentRowCount();
+        }
+        return currentRowCount.intValue();
+    }
 
-   @Override
-   public Object getRowData()
-   {
-      return getDomainObjectMap().get(currentId);
-   }
+    public void resetCurrentRowCount() {
+        currentRowCount = null;
+    }
 
-   @Override
-   public boolean isRowAvailable()
-   {
-      if (currentId == null)
-         return false;
-      if (getDomainObjectMap().containsKey(currentId))
-         return true;
-      return false;
-   }
+    @Override
+    public Object getRowData() {
+        return getDomainObjectMap().get(currentId);
+    }
 
-   public int getCurrentPage()
-   {
-      return currentPage;
-   }
+    @Override
+    public boolean isRowAvailable() {
+        if (currentId == null)
+            return false;
+        if (getDomainObjectMap().containsKey(currentId))
+            return true;
+        return false;
+    }
 
-   public void setCurrentPage(int currentPage)
-   {
-      this.currentPage = currentPage;
-   }
+    public int getCurrentPage() {
+        return currentPage;
+    }
 
-   public Collection<Object> getSelection()
-   {
-      return selection;
-   }
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
 
-   public void setSelection(Collection<Object> selection)
-   {
-     this.selection = selection;
-   }
+    public Collection<Object> getSelection() {
+        return selection;
+    }
+
+    public void setSelection(Collection<Object> selection) {
+        this.selection = selection;
+    }
 
     public void clearSelection() {
-       if (this.selection != null) {
-           this.selection.clear();
-       }
+        if (this.selection != null) {
+            this.selection.clear();
+        }
     }
 }

@@ -11,22 +11,20 @@ import javax.xml.bind.annotation.XmlType;
  */
 
 @XmlRootElement(namespace = "http://ws.sportsclub.samples.snowdrop.jboss.org/", name = "notifyPayment")
-@XmlType(name="notifyPayment")
-public class PaymentRequest
-{
-   @XmlElement(name = "amount", namespace = "")
-   private BigDecimal amount;
+@XmlType(name = "notifyPayment")
+public class PaymentRequest {
 
-   @XmlElement(name = "accountNumber", namespace = "")
-   private Long accountNumber;
+    @XmlElement(name = "amount", namespace = "")
+    private BigDecimal amount;
 
-   public BigDecimal getAmount()
-   {
-      return amount;
-   }
+    @XmlElement(name = "accountNumber", namespace = "")
+    private Long accountNumber;
 
-   public Long getAccountNumber()
-   {
-      return accountNumber;
-   }
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public Long getAccountNumber() {
+        return accountNumber;
+    }
 }

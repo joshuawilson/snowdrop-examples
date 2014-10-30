@@ -11,74 +11,63 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 
 @Entity
-public class Reservation implements Serializable
-{
+public class Reservation implements Serializable {
 
-	private static final long serialVersionUID = 4731610731461680181L;
+    private static final long serialVersionUID = 4731610731461680181L;
 
-   @Id
-   @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-   @Column(name = "fromDT", nullable = false)
-   private Date from;
+    @Column(name = "fromDT", nullable = false)
+    private Date from;
 
-   @Column(name = "toDT", nullable = false)
-   private Date to;
+    @Column(name = "toDT", nullable = false)
+    private Date to;
 
-   @ManyToOne
-   private Equipment equipment;
+    @ManyToOne
+    private Equipment equipment;
 
-   @ManyToOne
-   private Account account;
+    @ManyToOne
+    private Account account;
 
+    public Long getId() {
+        return id;
+    }
 
-   public Long getId()
-   {
-      return id;
-   }
+    public Account getAccount() {
+        return account;
+    }
 
-   public Account getAccount()
-   {
-      return account;
-   }
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
-   public void setAccount(Account account)
-   {
-      this.account = account;
-   }
+    public Equipment getEquipment() {
+        return equipment;
+    }
 
-   public Equipment getEquipment()
-   {
-      return equipment;
-   }
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
 
-   public void setEquipment(Equipment equipment)
-   {
-      this.equipment = equipment;
-   }
+    public Date getFrom() {
+        return from;
+    }
 
-   public Date getFrom()
-   {
-      return from;
-   }
+    public void setFrom(Date from) {
+        this.from = from;
+    }
 
-   public void setFrom(Date from)
-   {
-      this.from = from;
-   }
+    public Date getTo() {
+        return to;
+    }
 
-   public Date getTo()
-   {
-      return to;
-   }
-
-   public void setTo(Date to)
-   {
-      this.to = to;
-   }
+    public void setTo(Date to) {
+        this.to = to;
+    }
 }

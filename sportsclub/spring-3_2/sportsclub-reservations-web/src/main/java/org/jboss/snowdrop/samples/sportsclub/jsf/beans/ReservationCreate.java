@@ -18,193 +18,166 @@ import org.jboss.snowdrop.samples.sportsclub.service.ReservationService;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class ReservationCreate
-{
-   private AccountFilter accountFilter;
-   private EquipmentFilter equipmentFilter;
-   
-   private ReservationSearch reservationSearch;
+public class ReservationCreate {
 
-   private ReservationService reservationService;
-   private AccountService accountService;
+    private AccountFilter accountFilter;
+    private EquipmentFilter equipmentFilter;
 
-   private Reservation reservation;
-   private Long createdReservationId;
-   private Locale locale;
+    private ReservationSearch reservationSearch;
 
-   public void init()
-   {
-      Date from;
-      Date to;
+    private ReservationService reservationService;
+    private AccountService accountService;
 
-      Calendar cal = Calendar.getInstance(Locale.US);
-      //cal.clear();
-      from = cal.getTime();
+    private Reservation reservation;
+    private Long createdReservationId;
+    private Locale locale;
 
-      cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1);
-      to = cal.getTime();
+    public void init() {
+        Date from;
+        Date to;
 
-      reservation = new Reservation();
-      reservation.setAccount(null);
-      reservation.setEquipment(null);
-      reservation.setFrom(from);
-      reservation.setTo(to);
+        Calendar cal = Calendar.getInstance(Locale.US);
+        // cal.clear();
+        from = cal.getTime();
 
-      locale = Locale.getDefault();
-   }
+        cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1);
+        to = cal.getTime();
 
-   public Locale getLocale()
-   {
-      return locale;
-   }
+        reservation = new Reservation();
+        reservation.setAccount(null);
+        reservation.setEquipment(null);
+        reservation.setFrom(from);
+        reservation.setTo(to);
 
-   public String create()
-   {
-      Map<String, FacesMessage> errorMessages = validate(reservation);
+        locale = Locale.getDefault();
+    }
 
-      if (!errorMessages.isEmpty())
-      {
-         FacesContext context = FacesContext.getCurrentInstance();
-         for (String key : errorMessages.keySet())
-         {
-            context.addMessage(key, errorMessages.get(key));
-         }
-         return "error";
-      }
+    public Locale getLocale() {
+        return locale;
+    }
 
-      reservation = reservationService.create(reservation);
-      createdReservationId = reservation.getId();
-      init();
-      accountFilter.clearSelection();
-      equipmentFilter.clearSelection();
-      reservationSearch.resetCurrentRowCount();
-      return "success";
-   }
+    public String create() {
+        Map<String, FacesMessage> errorMessages = validate(reservation);
 
-   private Map<String, FacesMessage> validate(Reservation reservation)
-   {
+        if (!errorMessages.isEmpty()) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            for (String key : errorMessages.keySet()) {
+                context.addMessage(key, errorMessages.get(key));
+            }
+            return "error";
+        }
 
-      Map<String, FacesMessage> errors = new HashMap<String, FacesMessage>();
+        reservation = reservationService.create(reservation);
+        createdReservationId = reservation.getId();
+        init();
+        accountFilter.clearSelection();
+        equipmentFilter.clearSelection();
+        reservationSearch.resetCurrentRowCount();
+        return "success";
+    }
 
-      if (reservation.getAccount() == null ||
-            reservation.getEquipment() == null ||
-            reservation.getFrom() == null ||
-            reservation.getTo() == null)
-      {
+    private Map<String, FacesMessage> validate(Reservation reservation) {
 
-         if (reservation.getAccount() == null)
-         {
-            FacesMessage message = new FacesMessage();
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Account not selected.");
-            message.setDetail("Please select account!");
-            errors.put("AccountSelectForm", message);
-         }
+        Map<String, FacesMessage> errors = new HashMap<String, FacesMessage>();
 
-         if (reservation.getEquipment() == null)
-         {
-            FacesMessage message = new FacesMessage();
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Equipment not selected.");
-            message.setDetail("Please select equipment!");
-            errors.put("EquipmentSelectForm", message);
-         }
+        if (reservation.getAccount() == null || reservation.getEquipment() == null || reservation.getFrom() == null
+                || reservation.getTo() == null) {
 
-         if (reservation.getFrom() == null)
-         {
-            FacesMessage message = new FacesMessage();
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Date not selected.");
-            message.setDetail("Please select date!");
-            errors.put("ReservationDetailForm:from", message);
-         }
+            if (reservation.getAccount() == null) {
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Account not selected.");
+                message.setDetail("Please select account!");
+                errors.put("AccountSelectForm", message);
+            }
 
-         if (reservation.getTo() == null)
-         {
-            FacesMessage message = new FacesMessage();
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Date not selected.");
-            message.setDetail("Please select date!");
-            errors.put("ReservationDetailForm:to", message);
-         }
-      }
+            if (reservation.getEquipment() == null) {
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Equipment not selected.");
+                message.setDetail("Please select equipment!");
+                errors.put("EquipmentSelectForm", message);
+            }
 
-      return errors;
-   }
+            if (reservation.getFrom() == null) {
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Date not selected.");
+                message.setDetail("Please select date!");
+                errors.put("ReservationDetailForm:from", message);
+            }
 
-   public void updateSelectedAccount()
-   {
-      Account account = accountFilter.getSelectedAccount();
-      reservation.setAccount(account);
-   }
+            if (reservation.getTo() == null) {
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Date not selected.");
+                message.setDetail("Please select date!");
+                errors.put("ReservationDetailForm:to", message);
+            }
+        }
 
-   public void updateSelectedEquipment()
-   {
-      Equipment equipment = equipmentFilter.getSelectedEquipment();
-      reservation.setEquipment(equipment);
-   }
+        return errors;
+    }
 
-   public ReservationService getReservationService()
-   {
-      return reservationService;
-   }
+    public void updateSelectedAccount() {
+        Account account = accountFilter.getSelectedAccount();
+        reservation.setAccount(account);
+    }
 
-   public void setReservationService(ReservationService reservationService)
-   {
-      this.reservationService = reservationService;
-   }
+    public void updateSelectedEquipment() {
+        Equipment equipment = equipmentFilter.getSelectedEquipment();
+        reservation.setEquipment(equipment);
+    }
 
-   public Reservation getReservation()
-   {
-      return reservation;
-   }
+    public ReservationService getReservationService() {
+        return reservationService;
+    }
 
-   public void setReservation(Reservation reservation)
-   {
-      this.reservation = reservation;
-   }
+    public void setReservationService(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
-   public AccountService getAccountService()
-   {
-      return accountService;
-   }
+    public Reservation getReservation() {
+        return reservation;
+    }
 
-   public void setAccountService(AccountService accountService)
-   {
-      this.accountService = accountService;
-   }
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
 
-   public AccountFilter getAccountFilter()
-   {
-      return accountFilter;
-   }
+    public AccountService getAccountService() {
+        return accountService;
+    }
 
-   public void setAccountFilter(AccountFilter accountFilter)
-   {
-      this.accountFilter = accountFilter;
-   }
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
-   public EquipmentFilter getEquipmentFilter()
-   {
-      return equipmentFilter;
-   }
+    public AccountFilter getAccountFilter() {
+        return accountFilter;
+    }
 
-   public void setEquipmentFilter(EquipmentFilter equipmentFilter)
-   {
-      this.equipmentFilter = equipmentFilter;
-   }
+    public void setAccountFilter(AccountFilter accountFilter) {
+        this.accountFilter = accountFilter;
+    }
 
-   public long getCreatedReservationId()
-   {
-      return createdReservationId;
-   }
+    public EquipmentFilter getEquipmentFilter() {
+        return equipmentFilter;
+    }
 
-   public void setCreatedReservationId(long createdReservationId)
-   {
-      this.createdReservationId = createdReservationId;
-   }
+    public void setEquipmentFilter(EquipmentFilter equipmentFilter) {
+        this.equipmentFilter = equipmentFilter;
+    }
 
-   public void setReservationSearch(ReservationSearch reservationSearch) {
-      this.reservationSearch = reservationSearch;
-   }   
+    public long getCreatedReservationId() {
+        return createdReservationId;
+    }
+
+    public void setCreatedReservationId(long createdReservationId) {
+        this.createdReservationId = createdReservationId;
+    }
+
+    public void setReservationSearch(ReservationSearch reservationSearch) {
+        this.reservationSearch = reservationSearch;
+    }
 }

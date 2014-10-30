@@ -17,71 +17,60 @@ import java.util.List;
 
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public class EquipmentFilter extends AbstractExtendedDataModelHelper implements Serializable
-{
-	private static final long serialVersionUID = -2449681423406089713L;
+public class EquipmentFilter extends AbstractExtendedDataModelHelper implements Serializable {
 
-   @Autowired
-   private transient EquipmentService equipmentService;
+    private static final long serialVersionUID = -2449681423406089713L;
 
-   private Reservation reservation;
+    @Autowired
+    private transient EquipmentService equipmentService;
 
-   private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
+    private Reservation reservation;
 
-   public EquipmentFilter()
-   {
-      super();
-   }
+    private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
 
-   public Map<Long, ? extends Object> getDomainObjectMap()
-   {
-      return equipmentMap;
-   }
+    public EquipmentFilter() {
+        super();
+    }
 
-   public Long getCurrentRowCount()
-   {
-      return equipmentService.countAllEquipments();
-   }
+    public Map<Long, ? extends Object> getDomainObjectMap() {
+        return equipmentMap;
+    }
 
-   public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument)
-   {
-      int firstResult = ((SequenceRange) range).getFirstRow();
-      int maxResults = ((SequenceRange) range).getRows();
-      List<Equipment> equipments = null;
-      equipments = (List<Equipment>) equipmentService.getAllEquipments(firstResult, maxResults);
-      for (Equipment e : equipments)
-      {
-         Long id = e.getId();
-         equipmentMap.put(id, e);
-         dataVisitor.process(facesContext, id, argument);
-      }
-   }
+    public Long getCurrentRowCount() {
+        return equipmentService.countAllEquipments();
+    }
 
-   public Reservation getReservation()
-   {
-      return reservation;
-   }
+    public void walk(FacesContext facesContext, DataVisitor dataVisitor, Range range, Object argument) {
+        int firstResult = ((SequenceRange) range).getFirstRow();
+        int maxResults = ((SequenceRange) range).getRows();
+        List<Equipment> equipments = null;
+        equipments = (List<Equipment>) equipmentService.getAllEquipments(firstResult, maxResults);
+        for (Equipment e : equipments) {
+            Long id = e.getId();
+            equipmentMap.put(id, e);
+            dataVisitor.process(facesContext, id, argument);
+        }
+    }
 
-   public void setReservation(Reservation reservation)
-   {
-      this.reservation = reservation;
-   }
+    public Reservation getReservation() {
+        return reservation;
+    }
 
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
 
-   public EquipmentService getEquipmentService()
-   {
-      return equipmentService;
-   }
+    public EquipmentService getEquipmentService() {
+        return equipmentService;
+    }
 
-   public void setEquipmentService(EquipmentService equipmentService)
-   {
-      this.equipmentService = equipmentService;
-   }
+    public void setEquipmentService(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
+    }
 
-   public void reset()
-   {
+    public void reset() {
 
-   }
+    }
 }

@@ -5,13 +5,11 @@ import javax.annotation.PostConstruct;
 /**
  * @author Marius Bogoevici
  */
-public class AccountEdit extends AccountBase
-{
+public class AccountEdit extends AccountBase {
 
-  @PostConstruct
-  public void initAccount()
-  {
-     
-  }
+    @PostConstruct
+    public void initAccount() {
+
+    }
 
 }

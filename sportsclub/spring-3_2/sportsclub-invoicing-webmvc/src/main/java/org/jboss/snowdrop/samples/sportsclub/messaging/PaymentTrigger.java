@@ -17,23 +17,21 @@ import org.springframework.stereotype.Component;
  */
 @ManagedResource(objectName = "sportsclub:name=paymentNotificationTrigger", description = "Payment Notification Trigger")
 @Component
-public class PaymentTrigger
-{
+public class PaymentTrigger {
 
-   private static final Log LOG = LogFactory.getLog(PaymentTrigger.class);
+    private static final Log LOG = LogFactory.getLog(PaymentTrigger.class);
 
-   @Autowired
-   private JmsTemplate jmsTemplate;
+    @Autowired
+    private JmsTemplate jmsTemplate;
 
-   @ManagedOperation(description = "Send Payment Notification")
-   public void sendPaymentNotification(
-         @ManagedOperationParameter(name="accountId", description= "The account for which the payment is made") Long accountId,
-         @ManagedOperationParameter(name="amount", description= "Payment amount") double amount)
-   {
-      PaymentNotification paymentNotification = new PaymentNotification();
-      paymentNotification.setAccountNumber(accountId);
-      paymentNotification.setAmount(BigDecimal.valueOf(amount));
-      jmsTemplate.convertAndSend(paymentNotification);
-      LOG.info(paymentNotification + " sent to message queue");
-   }
+    @ManagedOperation(description = "Send Payment Notification")
+    public void sendPaymentNotification(
+            @ManagedOperationParameter(name = "accountId", description = "The account for which the payment is made") Long accountId,
+            @ManagedOperationParameter(name = "amount", description = "Payment amount") double amount) {
+        PaymentNotification paymentNotification = new PaymentNotification();
+        paymentNotification.setAccountNumber(accountId);
+        paymentNotification.setAmount(BigDecimal.valueOf(amount));
+        jmsTemplate.convertAndSend(paymentNotification);
+        LOG.info(paymentNotification + " sent to message queue");
+    }
 }

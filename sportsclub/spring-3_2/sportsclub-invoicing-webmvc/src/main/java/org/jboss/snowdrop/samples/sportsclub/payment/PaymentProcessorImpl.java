@@ -13,27 +13,26 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class PaymentProcessorImpl implements PaymentProcessor
-{
-   @Autowired
-   private AccountRepository accountRepository;
+public class PaymentProcessorImpl implements PaymentProcessor {
 
-   @Autowired
-   private PaymentRepository paymentRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
-   @Transactional
-   public Long processPayment(Long accountId, BigDecimal amount)
-   {
-      Account account = accountRepository.findById(accountId);
-      Payment payment = new Payment();
-      payment.setAccount(account);
+    @Autowired
+    private PaymentRepository paymentRepository;
 
-      payment.setAmount(amount);
-      payment.setDate(new Date());
-      payment = paymentRepository.save(payment);
-      Balance balance = account.getBalance();
-      balance.credit(amount);
-      accountRepository.save(account);
-      return payment.getId();
-   }
+    @Transactional
+    public Long processPayment(Long accountId, BigDecimal amount) {
+        Account account = accountRepository.findById(accountId);
+        Payment payment = new Payment();
+        payment.setAccount(account);
+
+        payment.setAmount(amount);
+        payment.setDate(new Date());
+        payment = paymentRepository.save(payment);
+        Balance balance = account.getBalance();
+        balance.credit(amount);
+        accountRepository.save(account);
+        return payment.getId();
+    }
 }

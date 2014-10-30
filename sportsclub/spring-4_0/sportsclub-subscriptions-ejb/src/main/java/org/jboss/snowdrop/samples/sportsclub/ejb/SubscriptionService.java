@@ -8,48 +8,48 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Local
-public interface SubscriptionService
-{
-   int countAccountsBySubscriberName(String name);
+public interface SubscriptionService {
 
-   /**
-    * Search for {@link org.jboss.snowdrop.samples.sportsclub.domain.entity.Account}s
-    * based on provided subscriber name fragment. minIndex and maxIndex parameters
-    * are to allow results pagination. 
-    *
-    * @param name       subscriber name fragment
-    * @param minIndex   start of result index
-    * @param maxIndex   end of result index
-    * @return           list of related accounts
-    */
-   List<Account> findAccountsBySubscriberName(String name, int minIndex, int maxIndex);
+    int countAccountsBySubscriberName(String name);
 
-   /**
-    * Search for {@link org.jboss.snowdrop.samples.sportsclub.domain.entity.Account}s
-    * based on provided subscriber name fragment. minIndex and maxIndex parameters
-    * are to allow results pagination, currentInvoice flag means whether related
-    * accounts have opened/active invoice or not.
-    *
-    * @see #findAccountsBySubscriberName(String, int, int)
-    *
-    * @param name             subscriber name fragment
-    * @param minIndex         start of result index
-    * @param maxIndex         end of result index
-    * @param currentInvoice   active invoice
-    * @return                 list of related accounts
-    */
-   List<Account> findAccountsBySubscriberName(String name, int minIndex, int maxIndex, boolean currentInvoice);
+    /**
+     * Search for {@link org.jboss.snowdrop.samples.sportsclub.domain.entity.Account}s
+     * based on provided subscriber name fragment. minIndex and maxIndex parameters
+     * are to allow results pagination.
+     * 
+     * @param name      subscriber name fragment
+     * @param minIndex  start of result index
+     * @param maxIndex  end of result index
+     * @return list of related accounts
+     */
+    List<Account> findAccountsBySubscriberName(String name, int minIndex, int maxIndex);
 
-   List<String> getMembershipTypes();
+    /**
+     * Search for {@link org.jboss.snowdrop.samples.sportsclub.domain.entity.Account}s
+     * based on provided subscriber name fragment. minIndex and maxIndex parameters
+     * are to allow results pagination, currentInvoice flag means whether related
+     * accounts have opened/active invoice or not.
+     * 
+     * @see #findAccountsBySubscriberName(String, int, int)
+     * 
+     * @param name           subscriber name fragment
+     * @param minIndex       start of result index
+     * @param maxIndex       end of result index
+     * @param currentInvoice active invoice
+     * @return list of related accounts
+     */
+    List<Account> findAccountsBySubscriberName(String name, int minIndex, int maxIndex, boolean currentInvoice);
 
-   Account createAccount(Person person, String membershipCode, BillingType billingType);
+    List<String> getMembershipTypes();
 
-   Account findAccountById(Long id);
+    Account createAccount(Person person, String membershipCode, BillingType billingType);
 
-   void closeAccount(Account account);
+    Account findAccountById(Long id);
 
-   void updateAccount(Account currentAccount);
+    void closeAccount(Account account);
+
+    void updateAccount(Account currentAccount);
 }

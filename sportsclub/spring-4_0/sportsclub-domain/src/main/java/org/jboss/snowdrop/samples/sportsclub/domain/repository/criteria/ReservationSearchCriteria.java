@@ -7,41 +7,35 @@ import java.util.List;
 
 /**
  */
-public class ReservationSearchCriteria extends RangeCriteria
-{
-   private Date fromDate;
+public class ReservationSearchCriteria extends RangeCriteria {
 
-   private Date toDate;
+    private Date fromDate;
 
-   private List<EquipmentType> equipmentType;
+    private Date toDate;
 
-   public Date getFromDate()
-   {
-      return fromDate;
-   }
+    private List<EquipmentType> equipmentType;
 
-   public void setFromDate(Date fromDate)
-   {
-      this.fromDate = fromDate;
-   }
+    public Date getFromDate() {
+        return fromDate;
+    }
 
-   public Date getToDate()
-   {
-      return toDate;
-   }
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
 
-   public void setToDate(Date toDate)
-   {
-      this.toDate = toDate;
-   }
+    public Date getToDate() {
+        return toDate;
+    }
 
-   public List<EquipmentType> getEquipmentType()
-   {
-      return equipmentType;
-   }
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
 
-   public void setEquipmentType(List<EquipmentType> equipmentType)
-   {
-      this.equipmentType = equipmentType;
-   }
+    public List<EquipmentType> getEquipmentType() {
+        return equipmentType;
+    }
+
+    public void setEquipmentType(List<EquipmentType> equipmentType) {
+        this.equipmentType = equipmentType;
+    }
 }

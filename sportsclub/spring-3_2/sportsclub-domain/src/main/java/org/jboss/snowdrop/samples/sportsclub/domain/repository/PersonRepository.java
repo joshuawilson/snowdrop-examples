@@ -3,9 +3,8 @@ package org.jboss.snowdrop.samples.sportsclub.domain.repository;
 import org.jboss.snowdrop.samples.sportsclub.domain.entity.Person;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public interface PersonRepository extends Repository<Person, Long>
-{
+public interface PersonRepository extends Repository<Person, Long> {
 
 }

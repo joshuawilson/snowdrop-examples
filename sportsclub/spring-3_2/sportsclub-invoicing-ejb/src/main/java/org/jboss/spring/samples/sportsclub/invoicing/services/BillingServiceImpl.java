@@ -18,56 +18,49 @@ import org.jboss.spring.callback.SpringLifecycleInterceptor;
 
 @Stateless
 @Interceptors(SpringLifecycleInterceptor.class)
-public class BillingServiceImpl implements BillingService
-{
-   @Spring(bean = "invoiceRepository", jndiName = "SpringDao")
-   private InvoiceRepository invoiceRepository;
+public class BillingServiceImpl implements BillingService {
 
-   @Spring(bean = "accountRepository", jndiName = "SpringDao")
-   private AccountRepository accountRepository;
+    @Spring(bean = "invoiceRepository", jndiName = "SpringDao")
+    private InvoiceRepository invoiceRepository;
 
-   @Spring(bean = "paymentRepository", jndiName = "SpringDao")
-   private PaymentRepository paymentRepository;
+    @Spring(bean = "accountRepository", jndiName = "SpringDao")
+    private AccountRepository accountRepository;
 
-   public void setPaymentRepository(PaymentRepository paymentRepository)
-   {
-      this.paymentRepository = paymentRepository;
-   }
+    @Spring(bean = "paymentRepository", jndiName = "SpringDao")
+    private PaymentRepository paymentRepository;
 
-   public void setAccountRepository(AccountRepository accountRepository)
-   {
-      this.accountRepository = accountRepository;
-   }
+    public void setPaymentRepository(PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
+    }
 
-   public void setInvoiceRepository(InvoiceRepository invoiceRepository)
-   {
-      this.invoiceRepository = invoiceRepository;
-   }
+    public void setAccountRepository(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
-   public Invoice generateInvoice(Account account)
-   {
-      Invoice invoice = new Invoice();
-      invoice.setAccount(account);
-      invoice.setAmount(account.getFeePerBillingPeriod());
-      Date date = new Date();       
-      invoice.setIssueDate(date);
-      invoice.setBillingPeriod(account.getBillingPeriodFor(date));
-      invoice = invoiceRepository.save(invoice);
-      Balance balance = account.getBalance();
-      balance.debit(invoice.getAmount());
-      accountRepository.save(account);
-      return invoice;
-   }
+    public void setInvoiceRepository(InvoiceRepository invoiceRepository) {
+        this.invoiceRepository = invoiceRepository;
+    }
 
-   public List<Invoice> getInvoices(Account account)
-   {
-      return invoiceRepository.findForAccount(account);
-   }
+    public Invoice generateInvoice(Account account) {
+        Invoice invoice = new Invoice();
+        invoice.setAccount(account);
+        invoice.setAmount(account.getFeePerBillingPeriod());
+        Date date = new Date();
+        invoice.setIssueDate(date);
+        invoice.setBillingPeriod(account.getBillingPeriodFor(date));
+        invoice = invoiceRepository.save(invoice);
+        Balance balance = account.getBalance();
+        balance.debit(invoice.getAmount());
+        accountRepository.save(account);
+        return invoice;
+    }
 
-   public List<Payment> getPayments(Account account)
-   {
-      return paymentRepository.findForAccount(account);
-   }
+    public List<Invoice> getInvoices(Account account) {
+        return invoiceRepository.findForAccount(account);
+    }
 
+    public List<Payment> getPayments(Account account) {
+        return paymentRepository.findForAccount(account);
+    }
 
 }

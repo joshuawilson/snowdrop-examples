@@ -6,7 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Embeddable
 public class Name implements Serializable

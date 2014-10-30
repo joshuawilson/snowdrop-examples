@@ -10,39 +10,34 @@ import org.jboss.snowdrop.samples.sportsclub.ejb.SubscriptionService;
 /**
  * @author Marius Bogoevici
  */
-public class AccountBase
-{
-   @EJB
-   protected SubscriptionService subscriptionService;
-   private ReferenceDataHelper referenceDataHelper;
-   protected Account account = null;
-   private SelectItem[] billingTypeItems;
-   private SelectItem[] membershipCodes;
+public class AccountBase {
 
-   public void setReferenceDataHelper(ReferenceDataHelper referenceDataHelper)
-   {
-      this.referenceDataHelper = referenceDataHelper;
-   }
+    @EJB
+    protected SubscriptionService subscriptionService;
+    private ReferenceDataHelper referenceDataHelper;
+    protected Account account = null;
+    private SelectItem[] billingTypeItems;
+    private SelectItem[] membershipCodes;
 
-   @PostConstruct
-   void init()
-   {
-      membershipCodes = referenceDataHelper.getMembershipCodes();
-      billingTypeItems = referenceDataHelper.getBillingTypes();
-   }
+    public void setReferenceDataHelper(ReferenceDataHelper referenceDataHelper) {
+        this.referenceDataHelper = referenceDataHelper;
+    }
 
-   public Account getAccount()
-   {
-      return account;
-   }
+    @PostConstruct
+    void init() {
+        membershipCodes = referenceDataHelper.getMembershipCodes();
+        billingTypeItems = referenceDataHelper.getBillingTypes();
+    }
 
-   public SelectItem[] getBillingTypeItems()
-   {
-      return billingTypeItems;
-   }
+    public Account getAccount() {
+        return account;
+    }
 
-   public SelectItem[] getSelectableMembershipCodes()
-   {
-      return membershipCodes;
-   }
+    public SelectItem[] getBillingTypeItems() {
+        return billingTypeItems;
+    }
+
+    public SelectItem[] getSelectableMembershipCodes() {
+        return membershipCodes;
+    }
 }

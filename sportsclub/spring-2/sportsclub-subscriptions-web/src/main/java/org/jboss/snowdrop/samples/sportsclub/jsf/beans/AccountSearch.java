@@ -18,7 +18,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Account;
 import org.jboss.snowdrop.samples.sportsclub.ejb.SubscriptionService;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public class AccountSearch extends ExtendedDataModel<Account> {
 

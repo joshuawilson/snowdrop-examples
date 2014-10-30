@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Entity
 public class Invoice implements Serializable

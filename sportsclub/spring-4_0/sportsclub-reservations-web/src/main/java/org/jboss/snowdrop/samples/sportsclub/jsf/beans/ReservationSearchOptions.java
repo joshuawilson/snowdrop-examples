@@ -11,67 +11,56 @@ import java.util.Locale;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public class ReservationSearchOptions
-{
-   private EquipmentService equipmentService;
+public class ReservationSearchOptions {
 
-   private Date fromDate;
-   private Date toDate;
-   private List<EquipmentType> selectedEquipmentTypes;
-   private Locale locale;
+    private EquipmentService equipmentService;
 
-   public void init()
-   {
-      locale = Locale.getDefault();
-      selectedEquipmentTypes = new ArrayList<EquipmentType>();
-      for (EquipmentType et : getEquipmentService().getEquipmentTypes()) 
-      {
-         selectedEquipmentTypes.add(et);
-      }
-   }
+    private Date fromDate;
+    private Date toDate;
+    private List<EquipmentType> selectedEquipmentTypes;
+    private Locale locale;
 
-   public Locale getLocale()
-   {
-      return locale;
-   }
+    public void init() {
+        locale = Locale.getDefault();
+        selectedEquipmentTypes = new ArrayList<EquipmentType>();
+        for (EquipmentType et : getEquipmentService().getEquipmentTypes()) {
+            selectedEquipmentTypes.add(et);
+        }
+    }
 
-   public Date getFromDate()
-   {
-      return fromDate;
-   }
+    public Locale getLocale() {
+        return locale;
+    }
 
-   public void setFromDate(Date fromDate)
-   {
-      this.fromDate = fromDate;
-   }
+    public Date getFromDate() {
+        return fromDate;
+    }
 
-   public Date getToDate()
-   {
-      return toDate;
-   }
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
 
-   public void setToDate(Date toDate)
-   {
-      this.toDate = toDate;
-   }
+    public Date getToDate() {
+        return toDate;
+    }
 
-   public List<EquipmentType> getSelectedEquipmentTypes()
-   {
-      return selectedEquipmentTypes;
-   }
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
 
-   public void setSelectedEquipmentTypes(List<EquipmentType> selectedEquipmentTypes)
-   {
-      this.selectedEquipmentTypes = selectedEquipmentTypes;
-   }
+    public List<EquipmentType> getSelectedEquipmentTypes() {
+        return selectedEquipmentTypes;
+    }
 
-   public EquipmentService getEquipmentService()
-   {
-      return equipmentService;
-   }
+    public void setSelectedEquipmentTypes(List<EquipmentType> selectedEquipmentTypes) {
+        this.selectedEquipmentTypes = selectedEquipmentTypes;
+    }
 
-   public void setEquipmentService(EquipmentService equipmentService)
-   {
-      this.equipmentService = equipmentService;
-   }
+    public EquipmentService getEquipmentService() {
+        return equipmentService;
+    }
+
+    public void setEquipmentService(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
+    }
 }

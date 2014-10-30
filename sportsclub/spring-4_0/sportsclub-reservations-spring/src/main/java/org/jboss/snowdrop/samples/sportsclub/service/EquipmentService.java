@@ -10,20 +10,21 @@ import java.util.List;
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
-public interface EquipmentService
-{
-   public EquipmentType[] getEquipmentTypes();
+public interface EquipmentService {
 
-   public Equipment findEquipmentById(long id);
+    public EquipmentType[] getEquipmentTypes();
 
-   public Collection<Equipment> getAllEquipments();
+    public Equipment findEquipmentById(long id);
 
-   public Long countAllEquipments();
+    public Collection<Equipment> getAllEquipments();
 
-   public Collection<Equipment> getAllEquipments(int firstResult, int maxResults);
+    public Long countAllEquipments();
 
-   List<Equipment> getUnreservedEquipments(Date fromDate, Date toDate, Integer nim, Integer max, List<EquipmentType> types);
+    public Collection<Equipment> getAllEquipments(int firstResult, int maxResults);
 
-   Long countUnreservedEquipmentsForRange(Date fromDate, Date toDate, List<EquipmentType> types);
+    List<Equipment> getUnreservedEquipments(Date fromDate, Date toDate, Integer nim, Integer max,
+            List<EquipmentType> types);
+
+    Long countUnreservedEquipmentsForRange(Date fromDate, Date toDate, List<EquipmentType> types);
 
 }

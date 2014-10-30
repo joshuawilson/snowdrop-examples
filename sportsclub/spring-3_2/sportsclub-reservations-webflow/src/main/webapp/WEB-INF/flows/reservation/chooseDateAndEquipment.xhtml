@@ -8,10 +8,9 @@
     <ui:define name="content">
         <table>
             <tr>
-
                 <td style="width:400px">
                     <rich:panel>
-                        <h:form>
+	                    <h:form id="dateSelection">
 	                        <h:outputLabel value="From"/>
 	                        <h:panelGroup>
 	                            <rich:calendar id="from"
@@ -20,7 +19,8 @@
 	                                           showApplyButton="true"
 	                                           locale="#{reservationCreate.locale}">
 	                                <a4j:ajax event="change"
-	                                             action="#{equipmentFilterCreate.reset}" render="equipmentsTable, reservationData"/>
+	                                          action="#{equipmentFilterCreate.reset}" 
+	                                          render="equipmentsTable, reservationData"/>
 	                            </rich:calendar>
 	                            <h:message for="from" style="color:RED" showDetail="true" showSummary="true"/>
 	                        </h:panelGroup>
@@ -33,11 +33,12 @@
 	                                           showApplyButton="true"
 	                                           locale="#{reservationCreate.locale}">
 	                                <a4j:ajax event="change"
-	                                             action="#{equipmentFilterCreate.reset}" render="equipmentsTable, reservationData"/>
+	                                          action="#{equipmentFilterCreate.reset}" 
+	                                          render="equipmentsTable, reservationData"/>
 	                            </rich:calendar>
 	                            <h:message for="to" style="color:RED" showDetail="true" showSummary="true"/>
 	                        </h:panelGroup>
-                        </h:form>
+	                    </h:form>
                     </rich:panel>
 
                     <rich:panel>

@@ -1,43 +1,37 @@
 package org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
-public class AccountSearchCriteria extends RangeCriteria
-{
-   private PersonSearchCriteria personSearchCriteria;
+public class AccountSearchCriteria extends RangeCriteria {
 
-   private InvoiceSearchCriteria invoiceSearchCriteria;
+    private PersonSearchCriteria personSearchCriteria;
 
-   private boolean activeOnly;
+    private InvoiceSearchCriteria invoiceSearchCriteria;
 
-   public PersonSearchCriteria getPersonSearchCriteria()
-   {
-      return personSearchCriteria;
-   }
+    private boolean activeOnly;
 
-   public void setPersonSearchCriteria(PersonSearchCriteria personSearchCriteria)
-   {
-      this.personSearchCriteria = personSearchCriteria;
-   }
+    public PersonSearchCriteria getPersonSearchCriteria() {
+        return personSearchCriteria;
+    }
 
-   public boolean isActiveOnly()
-   {
-      return activeOnly;
-   }
+    public void setPersonSearchCriteria(PersonSearchCriteria personSearchCriteria) {
+        this.personSearchCriteria = personSearchCriteria;
+    }
 
-   public void setActiveOnly(boolean activeOnly)
-   {
-      this.activeOnly = activeOnly;
-   }
+    public boolean isActiveOnly() {
+        return activeOnly;
+    }
 
-   public InvoiceSearchCriteria getInvoiceSearchCriteria()
-   {
-      return invoiceSearchCriteria;
-   }
+    public void setActiveOnly(boolean activeOnly) {
+        this.activeOnly = activeOnly;
+    }
 
-   public void setInvoiceSearchCriteria(InvoiceSearchCriteria invoiceSearchCriteria)
-   {
-      this.invoiceSearchCriteria = invoiceSearchCriteria;
-   }
+    public InvoiceSearchCriteria getInvoiceSearchCriteria() {
+        return invoiceSearchCriteria;
+    }
+
+    public void setInvoiceSearchCriteria(InvoiceSearchCriteria invoiceSearchCriteria) {
+        this.invoiceSearchCriteria = invoiceSearchCriteria;
+    }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -9,18 +10,26 @@
     </parent>
 
     <artifactId>sportsclub-subscriptions-ejb</artifactId>
-    <name>Sports Club Subscriptions Spring-Backed EJBs</name>
-
     <packaging>ejb</packaging>
 
+    <name>Sports Club Subscriptions Spring-Backed EJBs</name>
+
     <dependencies>
+        <!-- Local -->
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
             <artifactId>sportsclub-domain</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
 
+        <!-- Snowdrop -->
+        <dependency>
+            <groupId>org.jboss.snowdrop</groupId>
+            <artifactId>snowdrop-interceptors</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- General -->
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
             <artifactId>jboss-ejb-api_3.1_spec</artifactId>
@@ -32,22 +41,16 @@
             <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.jboss.snowdrop</groupId>
-            <artifactId>snowdrop-interceptors</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
+
         <plugins>
             <plugin>
                 <artifactId>maven-ejb-plugin</artifactId>

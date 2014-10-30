@@ -11,16 +11,16 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria.Reservat
 /**
  *
  */
-public interface EquipmentRepository extends Repository<Equipment, Long>
-{
-   /**
-    * @return All available {@link EquipmentType}s
-    */
-   public EquipmentType[] getEquipmentTypes();
+public interface EquipmentRepository extends Repository<Equipment, Long> {
 
-   Collection<Equipment> findByCriteria(RangeCriteria criteria);
+    /**
+     * @return All available {@link EquipmentType}s
+     */
+    public EquipmentType[] getEquipmentTypes();
 
-   List<Equipment> findUnreserved(ReservationSearchCriteria criteria);
+    Collection<Equipment> findByCriteria(RangeCriteria criteria);
 
-   Long countUnreserved(ReservationSearchCriteria criteria);
+    List<Equipment> findUnreserved(ReservationSearchCriteria criteria);
+
+    Long countUnreserved(ReservationSearchCriteria criteria);
 }
