@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Local
 public interface SubscriptionService {
+
     int countAccountsBySubscriberName(String name);
 
     /**

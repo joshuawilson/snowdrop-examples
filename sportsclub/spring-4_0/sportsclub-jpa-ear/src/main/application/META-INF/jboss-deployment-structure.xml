@@ -1,18 +1,4 @@
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
-    <deployment>
-        <dependencies>
-            <module name="org.springframework.spring" slot="main" export="true" annotations="true">
-                <exports>
-                    <include path="META-INF**"/>
-                    <include path="org**"/>
-                </exports>
-                <imports>
-                    <include path="META-INF**"/>
-                    <include path="org**"/>
-                </imports>
-            </module>
-        </dependencies>
-    </deployment>
     <sub-deployment name="sportsclub-invoicing-webmvc.war">
         <dependencies>
              <module name="org.hornetq.ra"/>

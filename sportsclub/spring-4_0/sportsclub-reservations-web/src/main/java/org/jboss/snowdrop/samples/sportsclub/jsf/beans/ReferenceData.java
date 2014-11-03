@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class ReferenceData {
+
     private SelectItem[] equipmentTypes;
     private EquipmentService equipmentService;
 

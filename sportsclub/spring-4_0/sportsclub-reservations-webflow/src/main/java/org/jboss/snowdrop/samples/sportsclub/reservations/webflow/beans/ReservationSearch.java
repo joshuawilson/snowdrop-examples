@@ -15,6 +15,7 @@ import java.util.*;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class ReservationSearch extends AbstractExtendedDataModelHelper {
+
     private ReservationService reservationService;
     private ReservationSearchOptions reservationSearchOptions;
 

@@ -12,6 +12,7 @@ import java.util.Locale;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class ReservationSearchOptions {
+
     private EquipmentService equipmentService;
 
     private Date fromDate;

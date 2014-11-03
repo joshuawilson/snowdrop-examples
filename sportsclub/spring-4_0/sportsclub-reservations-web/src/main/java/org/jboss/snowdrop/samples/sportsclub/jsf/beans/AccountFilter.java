@@ -16,6 +16,7 @@ import org.jboss.snowdrop.samples.sportsclub.service.AccountService;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class AccountFilter extends AbstractExtendedDataModelHelper<Account> {
+
     private AccountService accountService;
 
     private String subscriberNameFragment;

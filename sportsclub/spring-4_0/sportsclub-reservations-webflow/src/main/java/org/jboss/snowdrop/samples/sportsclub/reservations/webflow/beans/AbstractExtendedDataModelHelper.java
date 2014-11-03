@@ -12,6 +12,7 @@ import org.ajax4jsf.model.ExtendedDataModel;
  * @author Marius Bogoevici</a>
  */
 public abstract class AbstractExtendedDataModelHelper extends ExtendedDataModel {
+
     private int currentPage = 1;
     private int currentRow;
     private Long currentId;

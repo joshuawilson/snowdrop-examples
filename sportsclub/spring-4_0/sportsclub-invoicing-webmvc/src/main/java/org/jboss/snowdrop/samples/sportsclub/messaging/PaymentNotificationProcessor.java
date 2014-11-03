@@ -16,7 +16,7 @@ public class PaymentNotificationProcessor {
 
     private static final Log LOG = LogFactory.getLog(PaymentNotificationProcessor.class);
 
-    @Autowired
+    @Autowired(required=true)
     private PaymentProcessor paymentProcessor;
 
     public void processPaymentNotification(PaymentNotification paymentNotification) {

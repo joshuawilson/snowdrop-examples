@@ -4,16 +4,6 @@
             <module name="org.slf4j" export="true"/>
             <module name="org.javassist" export="true"/>
             <module name="org.slf4j.jcl-over-slf4j" export="true"/>
-            <module name="org.springframework.spring" slot="main" export="true" annotations="true">
-                <exports>
-                    <include path="META-INF**"/>
-                    <include path="org**"/>
-                </exports>
-                <imports>
-                    <include path="META-INF**"/>
-                    <include path="org**"/>
-                </imports>
-            </module>
             <module name="org.hibernate" export="true"/>
         </dependencies>
     </deployment>

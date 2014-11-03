@@ -15,6 +15,7 @@ import java.util.List;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class EquipmentFilter extends AbstractExtendedDataModelHelper<Equipment> {
+
     private EquipmentService equipmentService;
     private Map<Long, Equipment> equipmentMap = new HashMap<Long, Equipment>();
 

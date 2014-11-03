@@ -170,22 +170,17 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-aspects</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -200,12 +195,22 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
+                <artifactId>spring-instrument</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-instrument-tomcat</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -230,17 +235,18 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-instrument</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-instrument-tomcat</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -252,12 +258,6 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc-portlet</artifactId>
                 <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
-                <scope>test</scope>
             </dependency>
 
             <!-- security -->
@@ -273,12 +273,12 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
+                <artifactId>spring-security-config</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
+                <artifactId>spring-security-core</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
             <dependency>
@@ -305,6 +305,11 @@
             <!-- webflow -->
             <dependency>
                 <groupId>org.springframework.webflow</groupId>
+                <artifactId>spring-binding</artifactId>
+                <version>${spring-webflow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.webflow</groupId>
                 <artifactId>spring-faces</artifactId>
                 <version>${spring-webflow.version}</version>
             </dependency>
@@ -323,11 +328,6 @@
                 <artifactId>spring-webflow</artifactId>
                 <version>${spring-webflow.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.webflow</groupId>
-                <artifactId>spring-binding</artifactId>
-                <version>${spring-webflow.version}</version>
-            </dependency>
 
             <!-- ws -->
             <dependency>
@@ -343,11 +343,6 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.ws</groupId>
-                <artifactId>spring-ws-support</artifactId>
-                <version>${spring-ws.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.ws</groupId>
                 <artifactId>spring-ws-security</artifactId>
                 <version>${spring-ws.version}</version>
                 <exclusions>
@@ -356,6 +351,11 @@
                         <artifactId>wsit-rt</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-support</artifactId>
+                <version>${spring-ws.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.ws</groupId>
@@ -368,6 +368,7 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
+
         <plugins>
 
             <plugin>

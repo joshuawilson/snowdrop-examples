@@ -20,6 +20,7 @@ import java.util.List;
  * @author Marius Bogoevici</a>
  */
 public class EquipmentFilter extends AbstractExtendedDataModelHelper implements Serializable {
+
     private static final long serialVersionUID = -2449681423406089713L;
 
     @Autowired

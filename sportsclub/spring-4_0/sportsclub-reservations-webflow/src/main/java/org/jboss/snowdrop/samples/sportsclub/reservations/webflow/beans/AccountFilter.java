@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class AccountFilter extends AbstractExtendedDataModelHelper implements Serializable {
+
     private static final long serialVersionUID = -269525937840159759L;
 
     @Autowired

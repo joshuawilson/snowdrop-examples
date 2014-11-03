@@ -20,6 +20,7 @@ import org.jboss.snowdrop.samples.sportsclub.service.ReservationService;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public class ReservationSearch extends AbstractExtendedDataModelHelper<Reservation> {
+
     private ReservationService reservationService;
     private ReservationSearchOptions reservationSearchOptions;
 

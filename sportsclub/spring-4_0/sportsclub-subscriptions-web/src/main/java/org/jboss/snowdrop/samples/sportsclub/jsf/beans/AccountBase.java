@@ -11,6 +11,7 @@ import org.jboss.snowdrop.samples.sportsclub.ejb.SubscriptionService;
  * @author Marius Bogoevici
  */
 public class AccountBase {
+
     @EJB
     protected SubscriptionService subscriptionService;
     private ReferenceDataHelper referenceDataHelper;
