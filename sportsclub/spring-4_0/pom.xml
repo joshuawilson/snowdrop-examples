@@ -35,9 +35,9 @@
 
     <properties>
         <!-- Explicitly declaring the source encoding eliminates the following
-            message: -->
-        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
-            resources, i.e. build is platform dependent! -->
+             message: 
+               [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+               resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <aopalliance.version>1.0</aopalliance.version>
@@ -50,6 +50,7 @@
         <junit.version>4.8.2</junit.version>
         <org.jboss.bom.eap.version>6.2.0-redhat-1</org.jboss.bom.eap.version>
         <slf4j.version>1.5.8</slf4j.version>
+
         <spring.version>4.0.5.RELEASE</spring.version>
         <spring-security.version>3.2.4.RELEASE</spring-security.version>
         <spring-webflow.version>2.4.0.RELEASE</spring-webflow.version>
@@ -57,32 +58,12 @@
 
         <!-- JBoss dependency versions -->
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
-
     </properties>
 
+    <!-- This section controls the version numbers for all the libs used. -->
     <dependencyManagement>
         <dependencies>
-            <!-- This section controls the version numbers for all the libs used. -->
-
-            <!-- When referring to artifacts whose poms have transitive dependencies the project will need to specify 
-                 versions of those artifacts as managed dependencies. Not doing so will result in a build failure since 
-                 the artifact may not have a version specified. (This should be considered a best practice in any case 
-                 as it keeps the versions of artifacts from changing from one build to the next). -->
-            <!-- Local libs that we need to ensure the same version is used across the board. -->
-            <dependency>
-                <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
-                <artifactId>sportsclub-domain</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
-                <artifactId>sportsclub-test-infrastructure</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!-- BOM imports -->
+          <!-- BOM imports -->
             <!-- Hibernate BOM -->
             <dependency>
                 <groupId>org.jboss.bom.eap</groupId>
@@ -100,7 +81,24 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-            <!-- End BOM imports -->
+          <!-- End BOM imports -->
+
+            <!-- When referring to artifacts whose poms have transitive dependencies the project will need to specify 
+                 versions of those artifacts as managed dependencies. Not doing so will result in a build failure since 
+                 the artifact may not have a version specified. (This should be considered a best practice in any case 
+                 as it keeps the versions of artifacts from changing from one build to the next). -->
+            <!-- Local libs that we need to ensure the same version is used across the board. -->
+            <dependency>
+                <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
+                <artifactId>sportsclub-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
+                <artifactId>sportsclub-test-infrastructure</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+            </dependency>
 
             <!-- General libs used -->
             <dependency>
@@ -108,49 +106,41 @@
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>commons-dbcp</groupId>
                 <artifactId>commons-dbcp</artifactId>
                 <version>${commons-dbcp.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
                 <version>${commons-logging.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>javassist</groupId>
                 <artifactId>javassist</artifactId>
                 <version>${javassist.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.jboss.el</groupId>
                 <artifactId>jboss-el</artifactId>
                 <version>${jboss-el.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
 
             <!-- Spring -->
             <dependency>
@@ -362,7 +352,6 @@
                 <artifactId>spring-xml</artifactId>
                 <version>${spring-ws.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -370,7 +359,6 @@
         <finalName>${project.artifactId}</finalName>
 
         <plugins>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.1</version>
@@ -421,7 +409,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

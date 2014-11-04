@@ -9,7 +9,6 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="app-inv-context" class="org.springframework.context.support.ClassPathXmlApplicationContext">
-<!--         <constructor-arg value="classpath*:dao-context.xml" />  -->
         <constructor-arg>
             <list>
                 <value>infrastructure.xml</value>

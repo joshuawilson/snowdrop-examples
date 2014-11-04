@@ -136,6 +136,28 @@
             <artifactId>spring-security-web</artifactId>
         </dependency>
 
+        <!-- Spring WebFlow -->
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-binding</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-faces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-js</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-js-resources</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-webflow</artifactId>
+        </dependency>
+
         <!-- Spring WS -->
         <dependency>
             <groupId>org.springframework.ws</groupId>
@@ -147,7 +169,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -199,6 +220,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <finalName>sportsclub</finalName>
     </build>
 </project>

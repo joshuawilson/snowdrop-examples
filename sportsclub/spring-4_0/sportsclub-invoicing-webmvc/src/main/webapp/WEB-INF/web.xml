@@ -40,7 +40,6 @@
             <param-value>/WEB-INF/springmvc-servlet-context.xml</param-value>
         </init-param>
     </servlet>
-
     <servlet>
         <servlet-name>spring-ws-servlet</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>

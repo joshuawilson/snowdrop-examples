@@ -5,6 +5,7 @@
             <module name="org.javassist" export="true"/>
             <module name="org.slf4j.jcl-over-slf4j" export="true"/>
             <module name="org.hibernate" export="true"/>
+            <module name="javax.faces.api" export="true"/>
         </dependencies>
     </deployment>
     <sub-deployment name="sportsclub-invoicing-webmvc.war">

@@ -14,31 +14,26 @@
     <name>Sports Club Unit Test Infrastructure</name>
 
     <dependencies>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -50,18 +45,15 @@
              <groupId>org.springframework</groupId>
              <artifactId>spring-context</artifactId>
         </dependency>
-
         <dependency>
              <groupId>org.springframework</groupId>
              <artifactId>spring-jdbc</artifactId>
         </dependency>
-
         <dependency>
              <groupId>org.springframework</groupId>
              <artifactId>spring-test</artifactId>
              <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 </project>

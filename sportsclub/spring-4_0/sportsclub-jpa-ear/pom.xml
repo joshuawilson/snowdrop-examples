@@ -16,18 +16,16 @@
 
     <properties>
         <!-- Explicitly declaring the source encoding eliminates the following
-            message: -->
-        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
-            resources, i.e. build is platform dependent! -->
+             message: 
+               [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+               resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- JBoss dependency versions -->
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
-
     </properties>
 
     <dependencies>
-
         <!-- Local -->
         <dependency>
             <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_0</groupId>
@@ -149,6 +147,28 @@
             <artifactId>spring-security-web</artifactId>
         </dependency>
 
+        <!-- Spring WebFlow -->
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-binding</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-faces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-js</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-js-resources</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-webflow</artifactId>
+        </dependency>
+
         <!-- Spring WS -->
         <dependency>
             <groupId>org.springframework.ws</groupId>
@@ -160,7 +180,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -229,6 +248,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <finalName>sportsclub</finalName>
     </build>
 </project>
