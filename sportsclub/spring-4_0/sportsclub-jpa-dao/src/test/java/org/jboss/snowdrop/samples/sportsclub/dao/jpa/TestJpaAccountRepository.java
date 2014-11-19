@@ -23,8 +23,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 @ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-        "classpath:TEST-jpa-infrastructure.xml",
-        "classpath:dao-context.xml"})
+                                   "classpath:TEST-jpa-infrastructure.xml",
+                                   "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestJpaAccountRepository {
 

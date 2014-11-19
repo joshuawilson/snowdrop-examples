@@ -13,8 +13,8 @@ import org.junit.runner.RunWith;
  * @author Marius Bogoevici
  */
 @ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-        "classpath:TEST-jpa-infrastructure.xml",
-        "classpath:dao-context.xml"})
+                                   "classpath:TEST-jpa-infrastructure.xml",
+                                   "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestJpaPersonRepository {
 
