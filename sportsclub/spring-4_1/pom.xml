@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_1</groupId>
+    <artifactId>sportsclub-parent</artifactId>
+    <version>3.1.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Sports Club Parent</name>
+
+    <modules>
+        <module>sportsclub-domain</module>
+        <module>sportsclub-ear</module>
+        <module>sportsclub-hibernate-dao</module>
+        <module>sportsclub-invoicing-ejb</module>
+        <module>sportsclub-invoicing-webmvc</module>
+        <module>sportsclub-jpa-dao</module>
+        <module>sportsclub-jpa-ear</module>
+        <module>sportsclub-reservations-spring</module>
+        <module>sportsclub-reservations-web</module>
+        <module>sportsclub-reservations-webflow</module>
+        <module>sportsclub-staticwebcontent</module>
+        <module>sportsclub-subscriptions-ejb</module>
+        <module>sportsclub-subscriptions-web</module>
+        <module>sportsclub-test-infrastructure</module>
+    </modules>
+
+    <scm>
+        <connection>scm:git:git@github.com:snowdrop/snowdrop-examples.git</connection>
+        <developerConnection>scm:git:git@github.com:snowdrop/snowdrop-examples.git</developerConnection>
+        <url>scm:git@github.com:git:snowdrop/snowdrop-examples.git</url>
+    </scm>
+
+    <properties>
+        <!-- Explicitly declaring the source encoding eliminates the following
+            message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+            resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <aopalliance.version>1.0</aopalliance.version>
+        <aspectj.version>1.7.4</aspectj.version>
+        <commons-dbcp.version>1.2.2</commons-dbcp.version>
+        <commons-logging.version>1.1.1</commons-logging.version>
+        <h2.version>1.3.161</h2.version>
+        <javassist.version>3.11.0.GA</javassist.version>
+        <jboss-el.version>1.0_02.CR6</jboss-el.version>
+        <junit.version>4.11</junit.version>
+        <org.jboss.bom.eap.version>6.3.2.GA</org.jboss.bom.eap.version>
+        <slf4j.version>1.5.8</slf4j.version>
+        <snowdrop.version>3.1.2-SNAPSHOT</snowdrop.version>
+
+        <spring.version>4.1.2.RELEASE</spring.version>
+        <spring-security.version>3.2.5.RELEASE</spring-security.version>
+        <spring-webflow.version>2.4.1.RELEASE</spring-webflow.version>
+        <spring-ws.version>2.2.0.RELEASE</spring-ws.version>
+
+        <!-- JBoss dependency versions -->
+        <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+    </properties>
+
+    <!-- This section controls the version numbers for all the libs used. -->
+    <dependencyManagement>
+        <dependencies>
+          <!-- BOM imports -->
+            <!-- Hibernate BOM -->
+            <dependency>
+                <groupId>org.jboss.bom.eap</groupId>
+                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+                <version>${org.jboss.bom.eap.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Richfaces BOM-->
+            <dependency>
+                <groupId>org.richfaces</groupId>
+                <artifactId>richfaces-bom</artifactId>
+                <version>4.3.3.Final</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+          <!-- End BOM imports -->
+
+            <!-- When referring to artifacts whose poms have transitive dependencies the project will need to specify 
+                 versions of those artifacts as managed dependencies. Not doing so will result in a build failure since 
+                 the artifact may not have a version specified. (This should be considered a best practice in any case 
+                 as it keeps the versions of artifacts from changing from one build to the next). -->
+            <!-- Local libs that we need to ensure the same version is used across the board. -->
+            <dependency>
+                <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_1</groupId>
+                <artifactId>sportsclub-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.snowdrop.samples.sportsclub.spring-4_1</groupId>
+                <artifactId>sportsclub-test-infrastructure</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Snowdrop -->
+            <dependency>
+                <groupId>org.jboss.snowdrop</groupId>
+                <artifactId>snowdrop-vfs</artifactId>
+                <version>${snowdrop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.snowdrop</groupId>
+                <artifactId>snowdrop-weaving</artifactId>
+                <version>${snowdrop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.snowdrop</groupId>
+                <artifactId>snowdrop-interceptors</artifactId>
+                <version>${snowdrop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.snowdrop</groupId>
+                <artifactId>snowdrop-namespace</artifactId>
+                <version>${snowdrop.version}</version>
+            </dependency>
+
+            <!-- General libs used -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>${commons-dbcp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.el</groupId>
+                <artifactId>jboss-el</artifactId>
+                <version>${jboss-el.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- Spring -->
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${aopalliance.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-instrument</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-instrument-tomcat</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jms</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-oxm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc-portlet</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- security -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-acl</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-cas</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-ldap</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-openid</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+
+            <!-- webflow -->
+            <dependency>
+                <groupId>org.springframework.webflow</groupId>
+                <artifactId>spring-binding</artifactId>
+                <version>${spring-webflow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.webflow</groupId>
+                <artifactId>spring-faces</artifactId>
+                <version>${spring-webflow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.webflow</groupId>
+                <artifactId>spring-js</artifactId>
+                <version>${spring-webflow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.webflow</groupId>
+                <artifactId>spring-js-resources</artifactId>
+                <version>${spring-webflow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.webflow</groupId>
+                <artifactId>spring-webflow</artifactId>
+                <version>${spring-webflow.version}</version>
+            </dependency>
+
+            <!-- ws -->
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-core</artifactId>
+                <version>${spring-ws.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-support</artifactId>
+                <version>${spring-ws.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-security</artifactId>
+                <version>${spring-ws.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.sun.xml.wsit</groupId>
+                        <artifactId>wsit-rt</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-xml</artifactId>
+                <version>${spring-ws.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <generateReleasePoms>false</generateReleasePoms>
+                    <pushChanges>false</pushChanges>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <jarName>${project.artifactId}</jarName>
+                </configuration>
+            </plugin>
+
+            <!-- Deployent on AS from console -->
+            <!-- This plugin allows for command line deployment to JBoss but should only be active in the EAR that will
+                 be deployed. Therefore all the other modules will inherit this version that skips it so that each module
+                 understands what to do with this command - you know, to skip it. -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${version.jboss.maven.plugin}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

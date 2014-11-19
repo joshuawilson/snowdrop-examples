@@ -1,0 +1,22 @@
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <deployment>
+        <dependencies>
+            <module name="org.springframework.spring" slot="snowdrop" export="true">
+                <exports>
+                    <include path="META-INF**"/>
+                    <include path="org**"/>
+                </exports>
+                <imports>
+                    <include path="META-INF**"/>
+                    <include path="org**"/>
+                </imports>
+            </module>
+            <module name="org.jboss.snowdrop" export="true"/>
+        </dependencies>
+    </deployment>
+    <sub-deployment name="sportsclub-invoicing-webmvc.war">
+        <dependencies>
+             <module name="org.hornetq.ra"/>
+        </dependencies>
+    </sub-deployment>
+</jboss-deployment-structure>
