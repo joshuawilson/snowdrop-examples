@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public class EquipmentFilter extends AbstractExtendedDataModelHelper implements Serializable
 {

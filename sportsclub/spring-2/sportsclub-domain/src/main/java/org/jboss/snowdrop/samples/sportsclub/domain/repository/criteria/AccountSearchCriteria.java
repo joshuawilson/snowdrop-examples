@@ -1,7 +1,7 @@
 package org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public class AccountSearchCriteria extends RangeCriteria
 {

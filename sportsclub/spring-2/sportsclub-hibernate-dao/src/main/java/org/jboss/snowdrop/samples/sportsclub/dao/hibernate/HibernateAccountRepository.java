@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public class HibernateAccountRepository extends HibernateRepository<Account, Long> implements AccountRepository
 {

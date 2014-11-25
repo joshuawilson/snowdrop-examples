@@ -13,7 +13,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria.Range;
 /**
  * Abstract repository using Hibernate SessionFactory.
  *
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public abstract class HibernateRepository<T, I extends Serializable> implements Repository<T, I>
 {

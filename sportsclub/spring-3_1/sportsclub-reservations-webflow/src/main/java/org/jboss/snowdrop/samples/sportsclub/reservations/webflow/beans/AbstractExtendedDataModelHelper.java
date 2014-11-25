@@ -9,7 +9,7 @@ import org.ajax4jsf.model.ExtendedDataModel;
  * Abstract helper class for JSF backing beans serving {#link ExtendedDataModel} implementations. 
  *
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public abstract class AbstractExtendedDataModelHelper extends ExtendedDataModel
 {

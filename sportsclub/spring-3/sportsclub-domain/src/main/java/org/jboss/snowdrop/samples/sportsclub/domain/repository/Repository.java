@@ -3,7 +3,7 @@ package org.jboss.snowdrop.samples.sportsclub.domain.repository;
 import java.util.List;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 public interface Repository<T, I>
 {

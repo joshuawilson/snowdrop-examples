@@ -8,7 +8,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
- * @author <a href="mailto:mariusb@redhat.com">Marius Bogoevici</a>
+ * @author Marius Bogoevici</a>
  */
 @Local
 public interface SubscriptionService
