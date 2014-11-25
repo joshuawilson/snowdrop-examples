@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <context:component-scan base-package="org.jboss.snowdrop.samples.sportsclub.messaging"/>
+
+    <jms:jca-listener-container resource-adapter="resourceAdapter" acknowledge="auto"
+                                activation-spec-factory="activationSpecFactory">
+        <jms:listener destination="/queue/sportsclub" ref="paymentNotificationProcessor"
+                      method="processPaymentNotification"/>
+    </jms:jca-listener-container>
+
+    <bean id="activationSpecFactory" class="org.springframework.jms.listener.endpoint.DefaultJmsActivationSpecFactory">
+        <property name="activationSpecClass" value="org.hornetq.ra.inflow.HornetQActivationSpec" />
+    </bean>
+
+    <bean id="resourceAdapter" class="org.springframework.jca.support.ResourceAdapterFactoryBean">
+        <property name="resourceAdapter">
+            <bean class="org.hornetq.ra.HornetQResourceAdapter">
+                <property name="connectorClassName" value="org.hornetq.core.remoting.impl.invm.InVMConnectorFactory" />
+                <property name="transactionManagerLocatorClass" value="org.jboss.as.messaging.jms.TransactionManagerLocator" />
+                <property name="transactionManagerLocatorMethod" value="getTransactionManager" />
+            </bean>
+        </property>
+        <property name="workManager">
+            <bean class="org.springframework.jca.work.SimpleTaskWorkManager" />
+        </property>
+    </bean>
+
+    <jee:jndi-lookup id="jcaConnectionFactory" jndi-name="java:/JmsXA" expected-type="javax.jms.ConnectionFactory"/>
+
+    <bean class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jcaConnectionFactory"/>
+        <property name="defaultDestinationName" value="queue/sportsclub"/>
+        <property name="destinationResolver">
+            <bean class="org.springframework.jms.support.destination.JndiDestinationResolver"/>
+        </property>
+    </bean>
+
+</beans>
