@@ -19,24 +19,23 @@ import junit.framework.Assert;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 @ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-      "classpath:test-hibernate-infrastructure.xml",
-      "classpath:test-dao-context.xml"})
+                                   "classpath:test-hibernate-infrastructure.xml",
+                                   "classpath:test-dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class TestHibernatePaymentRepository
-{
-   @Autowired
-   AccountRepository accountRepository;
+public class TestHibernatePaymentRepository {
 
-   @Autowired
-   PaymentRepository paymentRepository;
+    @Autowired
+    AccountRepository accountRepository;
 
-   @Test
-   public void testFindNoPaymentsForAccount()
-   {
-      Account a = accountRepository.findById(2L);
-      List<Payment> payments = paymentRepository.findForAccount(a);
+    @Autowired
+    PaymentRepository paymentRepository;
 
-      Assert.assertEquals(0, payments.size());
-   }
+    @Test
+    public void testFindNoPaymentsForAccount() {
+        Account a = accountRepository.findById(2L);
+        List<Payment> payments = paymentRepository.findForAccount(a);
+
+        Assert.assertEquals(0, payments.size());
+    }
 }

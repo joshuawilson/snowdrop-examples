@@ -16,72 +16,68 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-      "classpath:test-hibernate-infrastructure.xml",
-      "classpath:test-dao-context.xml"})
+                                   "classpath:test-hibernate-infrastructure.xml",
+                                   "classpath:test-dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class TestHibernateReservationRepository
-{
-   @Autowired
-   ReservationRepository reservationRepository;
+public class TestHibernateReservationRepository {
 
-   @Test
-   public void testFromToFilterCriteria()
-   {
-      Date from = getDate(2009, 1, 1);
-      Date to = getDate(2009, 12, 31);
+    @Autowired
+    ReservationRepository reservationRepository;
 
-      ReservationSearchCriteria criteria = new ReservationSearchCriteria();
-      criteria.setFromDate(from);
-      criteria.setToDate(to);
+    @Test
+    public void testFromToFilterCriteria() {
+        Date from = getDate(2009, 1, 1);
+        Date to = getDate(2009, 12, 31);
 
-      Assert.assertEquals(6, reservationRepository.getByCriteria(criteria).size());
-      Assert.assertEquals(6, reservationRepository.countByCriteria(criteria).longValue());
+        ReservationSearchCriteria criteria = new ReservationSearchCriteria();
+        criteria.setFromDate(from);
+        criteria.setToDate(to);
 
-      criteria = new ReservationSearchCriteria();
-      criteria.setFromDate(getDate(2009, 02, 01));
+        Assert.assertEquals(6, reservationRepository.getByCriteria(criteria).size());
+        Assert.assertEquals(6, reservationRepository.countByCriteria(criteria).longValue());
 
-      Assert.assertEquals(5, reservationRepository.getByCriteria(criteria).size());
-      Assert.assertEquals(5, reservationRepository.countByCriteria(criteria).longValue());
+        criteria = new ReservationSearchCriteria();
+        criteria.setFromDate(getDate(2009, 02, 01));
 
-      criteria = new ReservationSearchCriteria();
-      criteria.setToDate(getDate(2009, 11, 30));
+        Assert.assertEquals(5, reservationRepository.getByCriteria(criteria).size());
+        Assert.assertEquals(5, reservationRepository.countByCriteria(criteria).longValue());
 
-      Assert.assertEquals(5, reservationRepository.getByCriteria(criteria).size());
-      Assert.assertEquals(5, reservationRepository.countByCriteria(criteria).longValue());
-   }
+        criteria = new ReservationSearchCriteria();
+        criteria.setToDate(getDate(2009, 11, 30));
 
-   @Test
-   public void testEquipmentTypeFilterCriteria()
-   {
-      Date from = getDate(2009, 1, 1);
-      Date to = getDate(2009, 12, 31);
+        Assert.assertEquals(5, reservationRepository.getByCriteria(criteria).size());
+        Assert.assertEquals(5, reservationRepository.countByCriteria(criteria).longValue());
+    }
 
-      List<EquipmentType> types = new ArrayList<EquipmentType>();
-      types.add(EquipmentType.COURT);
-      ReservationSearchCriteria criteria = new ReservationSearchCriteria();
-      criteria.setFromDate(from);
-      criteria.setToDate(to);
-      criteria.setEquipmentType(types);
+    @Test
+    public void testEquipmentTypeFilterCriteria() {
+        Date from = getDate(2009, 1, 1);
+        Date to = getDate(2009, 12, 31);
 
-      Assert.assertEquals(1, reservationRepository.getByCriteria(criteria).size());
-      Assert.assertEquals(1, reservationRepository.countByCriteria(criteria).longValue());
-   }
+        List<EquipmentType> types = new ArrayList<EquipmentType>();
+        types.add(EquipmentType.COURT);
+        ReservationSearchCriteria criteria = new ReservationSearchCriteria();
+        criteria.setFromDate(from);
+        criteria.setToDate(to);
+        criteria.setEquipmentType(types);
 
-   @Test
-   public void testRangeCriteria()
-   {
-      ReservationSearchCriteria criteria = new ReservationSearchCriteria();
-      criteria.setRange(new Range(1,3));
-      List<Reservation> accountList = reservationRepository.getByCriteria(criteria);
-      Assert.assertEquals(3, accountList.size());
-   }
+        Assert.assertEquals(1, reservationRepository.getByCriteria(criteria).size());
+        Assert.assertEquals(1, reservationRepository.countByCriteria(criteria).longValue());
+    }
 
-   private Date getDate(int year, int month, int day)
-   {
-      Calendar cal = Calendar.getInstance(Locale.US);
-      cal.clear();
-      cal.set(year, month - 1, day);
-      return cal.getTime();
-   }
+    @Test
+    public void testRangeCriteria() {
+        ReservationSearchCriteria criteria = new ReservationSearchCriteria();
+        criteria.setRange(new Range(1, 3));
+        List<Reservation> accountList = reservationRepository.getByCriteria(criteria);
+        Assert.assertEquals(3, accountList.size());
+    }
+
+    private Date getDate(int year, int month, int day) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.clear();
+        cal.set(year, month - 1, day);
+        return cal.getTime();
+    }
 }

@@ -21,21 +21,20 @@ import java.util.List;
                                    "classpath:TEST-jpa-infrastructure.xml",
                                    "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestJpaInvoiceRepository
-{
-   @Autowired
-   InvoiceRepository invoiceRepository;
+public class TestJpaInvoiceRepository {
 
-   @Autowired
-   AccountRepository accountRepository;
+    @Autowired
+    InvoiceRepository invoiceRepository;
 
-   @Test
-   @Transactional
-   public void testFindForAccount()
-   {
-      Account a = accountRepository.findById(2L);
-      List<Invoice> invoices = invoiceRepository.findForAccount(a);
-      Assert.assertNotNull(invoices);
-      Assert.assertEquals(1, invoices.size());
-   }
+    @Autowired
+    AccountRepository accountRepository;
+
+    @Test
+    @Transactional
+    public void testFindForAccount() {
+        Account a = accountRepository.findById(2L);
+        List<Invoice> invoices = invoiceRepository.findForAccount(a);
+        Assert.assertNotNull(invoices);
+        Assert.assertEquals(1, invoices.size());
+    }
 }

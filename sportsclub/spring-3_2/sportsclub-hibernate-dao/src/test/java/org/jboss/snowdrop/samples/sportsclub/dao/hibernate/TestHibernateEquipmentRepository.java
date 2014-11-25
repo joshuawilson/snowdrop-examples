@@ -23,65 +23,59 @@ import java.util.Locale;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 @ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-      "classpath:test-hibernate-infrastructure.xml",
-      "classpath:dao-context.xml"})
+                                   "classpath:test-hibernate-infrastructure.xml",
+                                   "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class TestHibernateEquipmentRepository
-{
-   @Autowired
-   EquipmentRepository equipmentRepository;
+public class TestHibernateEquipmentRepository {
 
-   @Test
-   public void testEquipmentTypes()
-   {
-      EquipmentType[] types = equipmentRepository.getEquipmentTypes();
-      Assert.assertEquals(3,types.length);
-   }
+    @Autowired
+    EquipmentRepository equipmentRepository;
 
-   @Test
-   public void testRangeCriteria()
-   {
-      RangeCriteria criteria = new RangeCriteria();
-      criteria.setRange(new Range(1,3));
-      Collection<Equipment> equipments =  equipmentRepository.findByCriteria(criteria);
-      Assert.assertEquals(3, equipments.size());
-   }
+    @Test
+    public void testEquipmentTypes() {
+        EquipmentType[] types = equipmentRepository.getEquipmentTypes();
+        Assert.assertEquals(3, types.length);
+    }
 
+    @Test
+    public void testRangeCriteria() {
+        RangeCriteria criteria = new RangeCriteria();
+        criteria.setRange(new Range(1, 3));
+        Collection<Equipment> equipments = equipmentRepository.findByCriteria(criteria);
+        Assert.assertEquals(3, equipments.size());
+    }
 
-   @Test
-   public void testSearchUnreserved()
-   {
-      Date from = getDate(2009, 1, 1);
-      Date to = getDate(2009, 12, 31);
+    @Test
+    public void testSearchUnreserved() {
+        Date from = getDate(2009, 1, 1);
+        Date to = getDate(2009, 12, 31);
 
-      ReservationSearchCriteria criteria = new ReservationSearchCriteria();
-      criteria.setFromDate(from);
-      criteria.setToDate(to);
+        ReservationSearchCriteria criteria = new ReservationSearchCriteria();
+        criteria.setFromDate(from);
+        criteria.setToDate(to);
 
-      Collection<Equipment> equipments =  equipmentRepository.findUnreserved(criteria);
-      Assert.assertEquals(1, equipments.size());
-   }
+        Collection<Equipment> equipments = equipmentRepository.findUnreserved(criteria);
+        Assert.assertEquals(1, equipments.size());
+    }
 
-   @Test
-   public void testCountUnreserved()
-   {
-      Date from = getDate(2009, 1, 1);
-      Date to = getDate(2009, 12, 31);
+    @Test
+    public void testCountUnreserved() {
+        Date from = getDate(2009, 1, 1);
+        Date to = getDate(2009, 12, 31);
 
-      ReservationSearchCriteria criteria = new ReservationSearchCriteria();
-      criteria.setFromDate(from);
-      criteria.setToDate(to);
+        ReservationSearchCriteria criteria = new ReservationSearchCriteria();
+        criteria.setFromDate(from);
+        criteria.setToDate(to);
 
-      long count =  equipmentRepository.countUnreserved(criteria);
-      Assert.assertEquals(1l, count);
-   }
+        long count = equipmentRepository.countUnreserved(criteria);
+        Assert.assertEquals(1l, count);
+    }
 
-   private Date getDate(int year, int month, int day)
-   {
-      Calendar cal = Calendar.getInstance(Locale.US);
-      cal.clear();
-      cal.set(year, month - 1, day);
-      return cal.getTime();
-   }
+    private Date getDate(int year, int month, int day) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.clear();
+        cal.set(year, month - 1, day);
+        return cal.getTime();
+    }
 }

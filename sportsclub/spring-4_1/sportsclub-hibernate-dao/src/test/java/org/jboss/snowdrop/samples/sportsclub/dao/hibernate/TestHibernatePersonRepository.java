@@ -13,19 +13,18 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.PersonRepository;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 @ContextConfiguration(locations = {"classpath:test-db-infrastructure.xml",
-      "classpath:test-hibernate-infrastructure.xml",
-      "classpath:test-dao-context.xml"})
+                                   "classpath:test-hibernate-infrastructure.xml",
+                                   "classpath:test-dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class TestHibernatePersonRepository
-{
-   @Autowired
-   PersonRepository personRepository;
+public class TestHibernatePersonRepository {
 
-   @Test
-   public void testPersonRepository()
-   {
-      long count = personRepository.countAll();
-      Assert.assertEquals(12, count);
-   }
+    @Autowired
+    PersonRepository personRepository;
+
+    @Test
+    public void testPersonRepository() {
+        long count = personRepository.countAll();
+        Assert.assertEquals(12, count);
+    }
 }

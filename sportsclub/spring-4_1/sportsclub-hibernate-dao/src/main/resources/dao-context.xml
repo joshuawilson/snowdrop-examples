@@ -14,11 +14,11 @@
         <property name="annotatedClasses">
             <list>
                 <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Account</value>
+                <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Balance</value>
                 <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Equipment</value>
                 <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Invoice</value>
-                <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Balance</value>
-                <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Payment</value>
                 <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Membership</value>
+                <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Payment</value>
                 <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Person</value>
                 <value>org.jboss.snowdrop.samples.sportsclub.domain.entity.Reservation</value>
             </list>
@@ -32,7 +32,11 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="personRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernatePersonRepository">
+    <bean id="equipmentRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernateEquipmentRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="invoiceRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernateInvoiceRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -40,19 +44,15 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="reservationRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernateReservationRepository">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="equipmentRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernateEquipmentRepository">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
     <bean id="paymentRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernatePaymentRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="invoiceRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernateInvoiceRepository">
+    <bean id="personRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernatePersonRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="reservationRepository" class="org.jboss.snowdrop.samples.sportsclub.dao.hibernate.HibernateReservationRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

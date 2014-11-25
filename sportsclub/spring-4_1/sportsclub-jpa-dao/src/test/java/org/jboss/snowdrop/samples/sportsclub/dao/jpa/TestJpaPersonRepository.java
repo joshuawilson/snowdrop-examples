@@ -16,15 +16,14 @@ import org.junit.runner.RunWith;
                                    "classpath:TEST-jpa-infrastructure.xml",
                                    "classpath:dao-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestJpaPersonRepository
-{
-   @Autowired
-   PersonRepository personRepository;
+public class TestJpaPersonRepository {
 
-   @Test
-   public void testPersonRepository()
-   {
-      long count = personRepository.countAll();
-      Assert.assertEquals(12, count);
-   }
+    @Autowired
+    PersonRepository personRepository;
+
+    @Test
+    public void testPersonRepository() {
+        long count = personRepository.countAll();
+        Assert.assertEquals(12, count);
+    }
 }
