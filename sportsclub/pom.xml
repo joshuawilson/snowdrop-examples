@@ -19,7 +19,7 @@
     <profiles>
         <profile>
             <!-- Make it easier to build all the Sportsclub variants by calling this 'grandparent' pom.  The modules are
-                 in the profile so that you don't have to build all of them just to generate the soucre. -->
+                 in the profile so that you don't have to build all of them just to generate the source. -->
             <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -30,6 +30,7 @@
                 <module>spring-3_1</module>
                 <module>spring-3_2</module>
                 <module>spring-4_0</module>
+                <module>spring-4_1</module>
             </modules>
         </profile>
         <profile>

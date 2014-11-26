@@ -11,6 +11,7 @@ import java.util.List;
  * @author <a href="mailto:lvlcek@redhat.com">Lukas Vlcek</a>
  */
 public interface EquipmentService {
+
     public EquipmentType[] getEquipmentTypes();
 
     public Equipment findEquipmentById(long id);

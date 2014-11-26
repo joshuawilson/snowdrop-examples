@@ -15,6 +15,7 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 public class AccountServiceImpl implements AccountService {
+
     private AccountRepository accountRepository;
 
     public Account getAccountById(long id) {

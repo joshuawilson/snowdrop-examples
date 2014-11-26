@@ -11,6 +11,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.repository.criteria.Reservat
  * @author Marius Bogoevici
  */
 public class CriteriaUtils {
+
     public static ReservationSearchCriteria createReservationSearchCriteria(Date fromDate, Date toDate, Integer min,
             Integer max, List<EquipmentType> types) {
         ReservationSearchCriteria criteria = new ReservationSearchCriteria();

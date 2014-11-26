@@ -10,6 +10,7 @@ import org.jboss.snowdrop.samples.sportsclub.domain.entity.Reservation;
  *
  */
 public interface ReservationService {
+
     List<Reservation> getReservations(Date fromDate, Date toDate, Integer nim, Integer max, List<EquipmentType> types);
 
     Long countReservationsForRange(Date fromDate, Date toDate, List<EquipmentType> types);

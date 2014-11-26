@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 public class EquipmentServiceImpl implements EquipmentService {
+
     private EquipmentRepository equipmentRepository;
 
     public EquipmentType[] getEquipmentTypes() {
