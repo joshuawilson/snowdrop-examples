@@ -48,7 +48,7 @@
         <javassist.version>3.11.0.GA</javassist.version>
         <jboss-el.version>1.0_02.CR6</jboss-el.version>
         <junit.version>4.11</junit.version>
-        <org.jboss.bom.eap.version>6.3.2.GA</org.jboss.bom.eap.version>
+        <org.jboss.bom.eap.version>6.2.0-redhat-1</org.jboss.bom.eap.version>
         <slf4j.version>1.5.8</slf4j.version>
 
         <spring.version>4.0.8.RELEASE</spring.version>
