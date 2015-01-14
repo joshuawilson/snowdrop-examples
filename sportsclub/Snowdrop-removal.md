@@ -179,27 +179,27 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
         
         **Replace** `@Spring(bean = "membershipRepository", jndiName = "SpringDao")` **with** `@Autowired`  
 
+    *NOTE: Clean up the Import statements too.*
+
 6. **Create** the beanRefContext.xml file.
     - *sportsclub-invoicing-ejb/src/main/resources/beanRefContext.xml*  
     with the following content  
     
-        <?xml version="1.0" encoding="UTF-8"?>
-        <beans xmlns="http://www.springframework.org/schema/beans"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xmlns:context="http://www.springframework.org/schema/context"
-               xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-            
-            <bean id="app-inv-context" class="org.springframework.context.support.ClassPathXmlApplicationContext">
-                <constructor-arg>
-                    <list>
-                        <value>infrastructure.xml</value>
-                        <value>dao-context.xml</value>
-                    </list>
-                </constructor-arg>
-            </bean>
-        
-        </beans>
+            <?xml version="1.0" encoding="UTF-8"?>
+            <beans xmlns="http://www.springframework.org/schema/beans"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:context="http://www.springframework.org/schema/context"
+                   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                                       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+                <bean id="app-inv-context" class="org.springframework.context.support.ClassPathXmlApplicationContext">
+                    <constructor-arg>
+                        <list>
+                            <value>infrastructure.xml</value>
+                            <value>dao-context.xml</value>
+                        </list>
+                    </constructor-arg>
+                </bean>
+            </beans>
 
     This creates the bean ClassPathXmlApplicationContext that references the xml files that have the beans that will be 
     injected. In this case it will have dao-context.xml and infrastructure.xml.  
@@ -273,16 +273,12 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
     The problem is that the Annotations are not being picked up. Use the jandex.jar in the modules at org/jboss/jandex 
     and index the spring-conext.jar. 
     
-    On the CLI modify the Spring jar directly like this:
-    
-            $ java -jar [JBOSS-HOME]/modules/system/layers/base/org/jboss/jandex/main/jandex-1.0.3.Final-redhat-2.jar -m spring-context.jar
+    On the CLI create the needed **index.jar** like this:
 
-    **OR**
-
-            java -jar [JBOSS_HOME]/modules/system/layers/base/org/jboss/jandex/main/jandex-1.0.3.Final-redhat-2.jar spring-context.jar
-            mkdir /tmp/META-INF
-            mv spring-context.ifx /tmp/META-INF/jandex.idx
-            jar cf index.jar -C /tmp META-INF/jandex.idx
+        java -jar [JBOSS_HOME]/modules/system/layers/base/org/jboss/jandex/main/jandex-1.0.3.Final-redhat-2.jar spring-context.jar
+        mkdir /tmp/META-INF
+        mv spring-context.idx /tmp/META-INF/jandex.idx
+        jar cf index.jar -C /tmp META-INF/jandex.idx
 
     Then include the created jandex index.jar in the same dir as Spring-context.jar. Don't for get to add/modify the 
     module.xml to reference it.
@@ -333,6 +329,10 @@ How to convert the Sportsclub project to **not** depend on Spring Modules instal
 
             <module name="javax.faces.api" export="true"/>
 
-4. **Add** all the Spring jars to the EAR pom.xml files.  
-5. **Update** all references to Spring in the WAR and JAR pom.xml files to the `<scope>provided</scope>`.  
-6. **Delete** `<exclusions>` of Spring jars from the pom.xml files.  
+4. **Organize** all the Spring jars in all the pom.xml files. Set up maven inheritence by placing the needed jars in the
+parent POM and clean up references in the children POMs. Update the scope since it is no longer provided and remove any
+unnecessary exclusions. 
+
+    1. **Add** all the Spring jars to the EAR pom.xml files.  
+    2. **Update** all references to Spring in the WAR and JAR pom.xml files to the `<scope>provided</scope>`.  
+    3. **Delete** `<exclusions>` of Spring jars from the pom.xml files.  
