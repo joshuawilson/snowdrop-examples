@@ -183,6 +183,13 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
     - *sportsclub-invoicing-ejb/src/main/resources/beanRefContext.xml*  
     with the following content  
     
+        <?xml version="1.0" encoding="UTF-8"?>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:context="http://www.springframework.org/schema/context"
+               xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+            
             <bean id="app-inv-context" class="org.springframework.context.support.ClassPathXmlApplicationContext">
                 <constructor-arg>
                     <list>
@@ -191,6 +198,8 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
                     </list>
                 </constructor-arg>
             </bean>
+        
+        </beans>
 
     This creates the bean ClassPathXmlApplicationContext that references the xml files that have the beans that will be 
     injected. In this case it will have dao-context.xml and infrastructure.xml.  
@@ -236,7 +245,7 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
 
                 xmlns:jboss="http://www.jboss.org/schema/snowdrop"
                 
-                http://www.jboss.org/schema/snowdrop http://www.jboss.org/schema/snowdrop/snowdrop.xsd"
+                http://www.jboss.org/schema/snowdrop http://www.jboss.org/schema/snowdrop/snowdrop.xsd
                 
                 <jboss:activation-spec-factory id="activationSpecFactory" />
                 <jboss:resource-adapter id="resourceAdapter"/>
@@ -260,11 +269,30 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
                     </property>
                 </bean>
 
+9. *NOTE: If you use Spring as an installed Module in EAP you need a jandex.idx for spring-context.*  
+    The problem is that the Annotations are not being picked up. Use the jandex.jar in the modules at org/jboss/jandex 
+    and index the spring-conext.jar. 
+    
+    On the CLI modify the Spring jar directly like this:
+    
+            $ java -jar [JBOSS-HOME]/modules/system/layers/base/org/jboss/jandex/main/jandex-1.0.3.Final-redhat-2.jar -m spring-context.jar
 
-How to convert the Sportsclub project **not** depend on Spring Modules installed into EAP.
+    **OR**
+
+            java -jar [JBOSS_HOME]/modules/system/layers/base/org/jboss/jandex/main/jandex-1.0.3.Final-redhat-2.jar spring-context.jar
+            mkdir /tmp/META-INF
+            mv spring-context.ifx /tmp/META-INF/jandex.idx
+            jar cf index.jar -C /tmp META-INF/jandex.idx
+
+    Then include the created jandex index.jar in the same dir as Spring-context.jar. Don't for get to add/modify the 
+    module.xml to reference it.
+
+    See [WildFly Jandex doc](https://github.com/wildfly/jandex) for more details.
+    
+
+How to convert the Sportsclub project to **not** depend on Spring Modules installed into EAP.
 ------------------------------------------------------------------------------------------
 
-*NOTE: If you use Spring as an installed Module in EAP you need a jandex.xml for spring-context.*
 
 1. **Delete** the Snowdrop module from EAP.
     - *jboss-eap/modules/system/add-ons/snowdrop/org/springframework/spring/snowdrop*
