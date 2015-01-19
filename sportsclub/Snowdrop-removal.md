@@ -7,7 +7,7 @@ How to convert the Sportsclub project that demonstrates Snowdrop to be Snowdrop-
 2. **Delete** the reference to Snowdrop from:
     - *pom.xml* (the parent pom)  
     
-            <snowdrop.version>3.1.2-SNAPSHOT</snowdrop.version>
+            <snowdrop.version>3.1.3-SNAPSHOT</snowdrop.version>
 
             <!-- Snowdrop -->
             <dependency>
